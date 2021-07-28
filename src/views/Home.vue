@@ -14,5 +14,16 @@ import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
     HelloWorld,
   },
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  fetchFromWP(): void {
+    fetch("http://aos-miniwarscrolls.localhost/wp-json/wp/v2/posts/")
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  }
+
+  mounted(): void {
+    this.fetchFromWP();
+    console.log(process.env);
+  }
+}
 </script>
