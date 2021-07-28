@@ -2,6 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    {{ posts }}
   </div>
 </template>
 
@@ -15,10 +16,16 @@ import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
   },
 })
 export default class Home extends Vue {
+  posts: any = [];
+
   fetchFromWP(): void {
-    fetch("http://aos-miniwarscrolls.localhost/wp-json/wp/v2/posts/")
+    fetch(
+      process.env.VUE_APP_API_URL +
+        process.env.VUE_APP_CUSTOM_API_URL +
+        "posts/"
+    )
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => (this.posts = data));
   }
 
   mounted(): void {
