@@ -11,13 +11,28 @@ const routes: Array<RouteConfig> = [
     component: Home,
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    path: "/miniscrolls-creator",
+    name: "Miniscrolls Creator",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+      import(
+        /* webpackChunkName: "miniscrolls-creator" */ "../views/MiniscrollsCreator.vue"
+      ),
+  },
+  {
+    path: "/minicheats-creator",
+    name: "Minicheats Creator",
+    component: () =>
+      import(
+        /* webpackChunkName: "minicheats-creator" */ "../views/MinicheatsCreator.vue"
+      ),
+  },
+  {
+    path: "/creator-manual",
+    name: "Creator Manual",
+    component: () =>
+      import(
+        /* webpackChunkName: "creator-manual" */ "../views/CreatorManual.vue"
+      ),
   },
 ];
 
