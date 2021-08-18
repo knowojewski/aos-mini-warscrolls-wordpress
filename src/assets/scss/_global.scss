@@ -26,3 +26,36 @@ a {
     color: $black;
     text-decoration: none;
 }
+
+.page-content {
+    padding-top: 80px;
+    @include breakpoint-up($xxl) {
+        margin-left: 320px;
+    }
+}
+
+.container {
+    --gutter: 40px;
+    width: 100%;
+    max-width: calc(1460px + var(--gutter));
+    margin: 0 auto;
+    padding-left: calc(var(--gutter) * 0.5);
+    padding-right: calc(var(--gutter) * 0.5);
+
+    &.smaller-gutter {
+        --gutter: 16px;
+    }
+}
+
+.row {
+    margin-right: calc(var(--gutter-big) * -0.5);
+    margin-left: calc(var(--gutter-big) * -0.5);
+
+    & > * {
+        width: 100%;
+        max-width: 100%;
+        padding-right: calc(var(--gutter-big) * 0.5);
+        padding-left: calc(var(--gutter-big) * 0.5);
+    }
+}
+

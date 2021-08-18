@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import Home from "../views/Home.vue";
+import HomePage from "../views/HomePage.vue";
 
 Vue.use(VueRouter);
 
@@ -8,14 +8,14 @@ const routes: Array<RouteConfig> = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: HomePage,
   },
   {
     path: "/miniscrolls-creator",
     name: "Miniscrolls Creator",
     component: () =>
       import(
-        /* webpackChunkName: "miniscrolls-creator" */ "../views/MiniscrollsCreator.vue"
+        /* webpackChunkName: "miniscrolls-creator" */ "../views/MiniscrollsCreatorPage.vue"
       ),
   },
   {
@@ -23,7 +23,7 @@ const routes: Array<RouteConfig> = [
     name: "Minicheats Creator",
     component: () =>
       import(
-        /* webpackChunkName: "minicheats-creator" */ "../views/MinicheatsCreator.vue"
+        /* webpackChunkName: "minicheats-creator" */ "../views/MinicheatsCreatorPage.vue"
       ),
   },
   {
@@ -31,7 +31,7 @@ const routes: Array<RouteConfig> = [
     name: "Creator Manual",
     component: () =>
       import(
-        /* webpackChunkName: "creator-manual" */ "../views/CreatorManual.vue"
+        /* webpackChunkName: "creator-manual" */ "../views/CreatorManualPage.vue"
       ),
   },
 ];

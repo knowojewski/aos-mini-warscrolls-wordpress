@@ -1,15 +1,22 @@
 <template>
   <nav class="main-nav" :class="{ active: showMenu }">
-    <button
-      @click="toggleMenu"
-      class="hamburger main-nav__hamburger"
-      :class="{ active: showMenu }"
-    >
-      <img src="../../assets/images/navigation/hamburger-bar.png" alt="Bar" />
-      <img src="../../assets/images/navigation/hamburger-bar.png" alt="Bar" />
-      <img src="../../assets/images/navigation/hamburger-bar.png" alt="Bar" />
-      <img src="../../assets/images/navigation/hamburger-bar.png" alt="Bar" />
-    </button>
+    <div class="main-nav__hamburger-wrapper" :class="{ active: showMenu }">
+      <button
+        @click="toggleMenu"
+        class="hamburger main-nav__hamburger"
+        :class="{ active: showMenu }"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <img
+        src="../../assets/images/your-scrolls/top-bg.png"
+        alt="Hamburger Background"
+        class="main-nav__hamburger-bg"
+      />
+    </div>
     <div class="main-nav__logo-wrapper">
       <router-link to="/" class="main-nav__logo-link">
         <img src="../../assets/images/navigation/LOGO.png" alt="Skull" />
@@ -44,7 +51,7 @@ import { RouteConfig } from "vue-router";
   },
 })
 export default class MainNavigation extends Vue {
-  showMenu: boolean = true;
+  showMenu: boolean = false;
   routes!: RouteConfig[] | undefined;
 
   get getRoutes(): RouteConfig[] | undefined {
@@ -81,16 +88,22 @@ export default class MainNavigation extends Vue {
   position: fixed;
   transform: translateX(-100%);
   transition: transform 0.8s;
+  background-color: $background-gray;
   z-index: 100;
   @include breakpoint-up($sm) {
+    min-width: unset;
     width: 360px;
+  }
+  @include breakpoint-up($xxl) {
+    transform: translateX(0);
+    width: 320px;
   }
 
   &.active {
     transform: translateX(0);
 
     .main-nav__hamburger {
-      transform: translateX(0);
+      transform: translateX(-60px);
     }
 
     .main-nav__bottom-image {
@@ -118,9 +131,37 @@ export default class MainNavigation extends Vue {
     width: 70%;
     max-width: 260px;
     padding: 12px;
+    @include breakpoint-up($xxl) {
+      max-width: 280px;
+      width: 100%;
+      margin: 0 auto;
+    }
 
     img {
       width: 100%;
+    }
+  }
+
+  &__hamburger-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    left: 100%;
+    top: 0;
+    background-color: $background-gray;
+  }
+
+  &__hamburger-bg {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    z-index: 0;
+  }
+
+  &__hamburger {
+    z-index: 1;
+    @include breakpoint-up($xxl) {
+      display: none;
     }
   }
 
@@ -165,7 +206,7 @@ export default class MainNavigation extends Vue {
       }
       @include breakpoint-up($xxl) {
         max-width: 680px;
-        transform: translateX(-320px);
+        transform: translateX(0);
       }
     }
   }

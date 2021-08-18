@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <MainNavigation />
-    <router-view />
+    <main class="page-content">
+      <router-view />
+    </main>
   </div>
 </template>
 
