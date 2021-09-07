@@ -39,6 +39,7 @@ export default class TabsBlock extends Vue {
   }
 
   &__tab {
+    flex: 1;
     &.active {
       .tabs-block__tab-btn {
         background-color: $black;
@@ -49,6 +50,7 @@ export default class TabsBlock extends Vue {
   }
 
   &__tab-btn {
+    width: 100%;
     text-transform: uppercase;
     padding: 4px 8px;
     background-color: $white;
@@ -56,6 +58,7 @@ export default class TabsBlock extends Vue {
     font-size: 14px;
     vertical-align: middle;
     color: $gray1;
+    white-space: nowrap;
     transition: color 0.5s, background 0.5s;
 
     &:hover {

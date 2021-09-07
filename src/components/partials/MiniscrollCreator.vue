@@ -63,5 +63,23 @@ export default class MiniscrollsCreator extends Vue {
   &__preview {
     max-height: 500px;
   }
+
+  &__form-title {
+    position: relative;
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+    font-size: 18px;
+    font-weight: 400;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 30%;
+      height: 1px;
+      background-color: $black;
+    }
+  }
 }
 </style>
