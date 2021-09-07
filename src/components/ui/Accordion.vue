@@ -2,8 +2,8 @@
   <div class="accordion" :class="{ active: accordionActive }">
     <div class="accordion__header">
       <button @click="toggleAccordion" class="accordion__toggler">
-        <h4 class="accordion__title">{{ accordionTitle }}</h4>
-        <span class="accordion__arrow">
+        <h4 class="accordion__title">{{ t(accordionTitle) }}</h4>
+        <span class="dropdown-arrow" :class="{ active: accordionActive }">
           <span></span>
           <span></span>
         </span>
@@ -22,8 +22,10 @@
 </template>
 
 <script lang="ts">
+import { UseTranslation } from "@/decorators";
 import { Vue, Component, Prop, Ref } from "vue-property-decorator";
 
+@UseTranslation("miniscrolls")
 @Component
 export default class Accordion extends Vue {
   @Prop(String) accordionTitle!: string;
@@ -37,9 +39,12 @@ export default class Accordion extends Vue {
 
     if (this.accordionContent.style.maxHeight) {
       this.accordionContent.style.maxHeight = "";
+      this.accordionContent.style.paddingTop = "";
     } else {
-      this.accordionContent.style.maxHeight =
-        this.accordionContent.scrollHeight + "px";
+      this.accordionContent.style.maxHeight = `${
+        this.accordionContent.scrollHeight + 10
+      }px`;
+      this.accordionContent.style.paddingTop = "10px";
     }
   }
 
@@ -93,47 +98,13 @@ export default class Accordion extends Vue {
     font-weight: 400;
   }
 
-  &__arrow {
-    display: block;
-    width: 18px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    span {
-      width: 50%;
-      height: 2px;
-      background-color: $white;
-      transition: transform 0.5s;
-
-      &:nth-child(1) {
-        transform: translateX(2px) rotate(45deg);
-      }
-      &:nth-child(2) {
-        transform: translateX(-2px) rotate(-45deg);
-      }
-    }
-  }
-
   &__content {
     max-height: 0;
+    padding-top: 0;
+    background-color: $white;
     overflow: hidden;
     border: 1px solid $black;
-    transition: max-height 0.3s;
-  }
-}
-
-.accordion.active {
-  .accordion__arrow {
-    span {
-      &:nth-child(1) {
-        transform: translateX(2px) rotate(-45deg);
-      }
-      &:nth-child(2) {
-        transform: translateX(-2px) rotate(45deg);
-      }
-    }
+    transition: max-height 0.3s, padding 0.3s;
   }
 }
 </style>

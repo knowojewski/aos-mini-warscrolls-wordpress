@@ -1,13 +1,15 @@
 <template>
   <div class="page__header">
-    <h1 class="page__title">{{ pageTitle ? pageTitle : "" }}</h1>
-    <p class="page__text">{{ pageIntro ? pageIntro : "" }}</p>
+    <h1 class="page__title">{{ pageTitle ? t(pageTitle) : "" }}</h1>
+    <p class="page__text">{{ pageIntro ? t(pageIntro) : "" }}</p>
   </div>
 </template>
 
 <script lang="ts">
+import { UseTranslation } from "@/decorators";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
+@UseTranslation("miniscrolls")
 @Component
 export default class PageHeader extends Vue {
   @Prop(String) pageTitle: string | undefined;

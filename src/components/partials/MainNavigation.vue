@@ -11,6 +11,23 @@
         <span></span>
         <span></span>
       </button>
+      <div class="main-nav__lang-switcher">
+        <a
+          class="main-nav__lang-btn"
+          :class="{ active: $i18n.locale === 'pl' }"
+          v-on:click="changeLanguage('pl')"
+        >
+          PL
+        </a>
+        |
+        <a
+          class="main-nav__lang-btn"
+          :class="{ active: $i18n.locale === 'en' }"
+          v-on:click="changeLanguage('en')"
+        >
+          EN
+        </a>
+      </div>
       <img
         src="../../assets/images/your-scrolls/top-bg.png"
         alt="Hamburger Background"
@@ -25,9 +42,9 @@
     <div class="main-nav__wrapper">
       <ul class="main-nav__links-list">
         <NavigationItem
-          v-for="(route, index) in getRoutes"
+          v-for="(navItem, index) in navigationItems"
           :key="index"
-          :link-props="route"
+          :link-props="navItem"
         />
       </ul>
       <div class="main-nav__bottom-image">
@@ -43,8 +60,11 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import NavigationItem from "@/components/partials/NavigationItem.vue";
-import { RouteConfig } from "vue-router";
+import { LinkParams } from "@/interfaces/interfaces";
+import { UseTranslation } from "@/decorators";
+import { Route } from "vue-router";
 
+@UseTranslation("navigation")
 @Component({
   components: {
     NavigationItem,
@@ -52,29 +72,32 @@ import { RouteConfig } from "vue-router";
 })
 export default class MainNavigation extends Vue {
   showMenu: boolean = false;
-  routes!: RouteConfig[] | undefined;
-
-  get getRoutes(): RouteConfig[] | undefined {
-    return this.routes;
-  }
+  navigationItems: LinkParams[] = [
+    {
+      linkURL: "miniscrolls-creator",
+      linkText: "miniscrolls-creator",
+    },
+    {
+      linkURL: "minicheats-creator",
+      linkText: "minicheats-creator",
+    },
+    {
+      linkURL: "creator-manual",
+      linkText: "creator-manual",
+    },
+  ];
 
   toggleMenu(): void {
     this.showMenu = !this.showMenu;
   }
 
-  setRoutes(): void {
-    this.routes = this.$router.options.routes
-      ? this.$router.options.routes.splice(1)
-      : [];
+  changeLanguage(lang: string): void {
+    this.$i18n.locale = lang;
   }
 
   @Watch("$route", { immediate: true, deep: true })
-  onRouteChange(): void {
-    this.toggleMenu();
-  }
-
-  created(): void {
-    this.setRoutes();
+  onRouteChange(val: Route, oldVal: Route): void {
+    if (oldVal) this.toggleMenu();
   }
 }
 </script>
@@ -143,12 +166,17 @@ export default class MainNavigation extends Vue {
   }
 
   &__hamburger-wrapper {
+    display: flex;
+    align-items: center;
     position: absolute;
-    width: 100%;
+    width: 100vw;
     height: 50px;
     left: 100%;
     top: 0;
     background-color: $background-gray;
+    @include breakpoint-up($xxl) {
+      width: calc(100vw - 320px);
+    }
   }
 
   &__hamburger-bg {
@@ -156,6 +184,32 @@ export default class MainNavigation extends Vue {
     top: -6px;
     left: -6px;
     z-index: 0;
+  }
+
+  &__lang-switcher {
+    position: relative;
+    margin-left: auto;
+    margin-right: 10px;
+    color: $white;
+    font-size: 18px;
+    z-index: 1;
+    @include breakpoint-up($xxl) {
+      margin-right: 32px;
+    }
+  }
+
+  &__lang-btn {
+    color: $gray1;
+    cursor: pointer;
+    transition: color 0.3s, font-weight 0.3s;
+
+    &:hover {
+      color: $white;
+    }
+    &.active {
+      color: $white;
+      font-weight: 600;
+    }
   }
 
   &__hamburger {

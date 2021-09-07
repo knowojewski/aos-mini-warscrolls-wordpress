@@ -80,3 +80,38 @@
         color: $gray1;
     }
 }
+
+.dropdown-arrow {
+    display: block;
+    width: 18px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    span {
+        width: 50%;
+        height: 2px;
+        background-color: $white;
+        transition: transform 0.5s, background .5s;
+
+        &:nth-child(1) {
+        transform: translateX(2px) rotate(45deg);
+        }
+        &:nth-child(2) {
+        transform: translateX(-2px) rotate(-45deg);
+        }
+    }
+
+    &.active {
+        span {
+            &:nth-child(1) {
+              transform: translateX(2px) rotate(-45deg);
+            }
+            &:nth-child(2) {
+              transform: translateX(-2px) rotate(45deg);
+            }
+          }
+    }
+}

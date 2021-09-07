@@ -7,12 +7,12 @@
     </div>
     <div class="container smaller-gutter">
       <div class="row">
-        <Accordion accordionTitle="Miniscrolls Creator" :activeOnLoad="false">
+        <Accordion accordionTitle="accordion1-title" :activeOnLoad="false">
           <template v-slot:accordionContent>
             <MiniscrollsCreator />
           </template>
         </Accordion>
-        <Accordion accordionTitle="Your Miniscrolls" :activeOnLoad="true">
+        <Accordion accordionTitle="accordion2-title" :activeOnLoad="true">
           <template v-slot:accordionContent>
             <div class="your-ms">Test</div>
           </template>
@@ -27,7 +27,9 @@ import { Component, Vue } from "vue-property-decorator";
 import PageHeader from "@/components/partials/PageHeader.vue";
 import Accordion from "@/components/ui/Accordion.vue";
 import MiniscrollsCreator from "@/components/partials/MiniscrollCreator.vue";
+import { UseTranslation } from "@/decorators";
 
+@UseTranslation("miniscrolls")
 @Component({
   components: {
     PageHeader,
@@ -36,11 +38,8 @@ import MiniscrollsCreator from "@/components/partials/MiniscrollCreator.vue";
   },
 })
 export default class MiniscrollsCreatorPage extends Vue {
-  pageTitle: string = "Miniscrolls Creator";
-  pageIntro: string = `This is the page where you can manage miniscrolls.There are two sections,
-      first is "Miniscroll Creator" section where you can build miniscrolls.
-      Second, "Your Miniscrolls" section contains all miniscrolls you've
-      created.`;
+  pageTitle: string = "title";
+  pageIntro: string = "page-intro";
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <li class="main-nav__link-item">
-    <router-link class="btn btn-full" :to="linkProps ? linkProps.path : '#'">
+    <router-link class="btn btn-full" :to="getLinkProps.linkURL">
       <img
         class="btn-full__bg"
         src="../../assets/images/navigation/link-bg.png"
@@ -11,18 +11,24 @@
         src="../../assets/images/navigation/nav-icon.png"
         alt="Skull"
       />
-      <span>{{ linkProps ? linkProps.name : "Some text" }}</span>
+      <span>{{ t(getLinkProps.linkText) }}</span>
     </router-link>
   </li>
 </template>
 
 <script lang="ts">
+import { LinkParams } from "@/interfaces/interfaces";
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { RouteConfig } from "vue-router";
+import { UseTranslation } from "@/decorators";
 
+@UseTranslation("navigation")
 @Component
 export default class NavigationItem extends Vue {
-  @Prop(Object) readonly linkProps: RouteConfig | undefined;
+  @Prop(Object) readonly linkProps!: LinkParams;
+
+  get getLinkProps(): LinkParams {
+    return this.linkProps;
+  }
 }
 </script>
 
