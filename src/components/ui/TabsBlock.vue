@@ -67,7 +67,7 @@ export default class TabsBlock extends Vue {
   }
 
   &__blocks {
-    padding: 16px 8px;
+    padding: 16px 12px;
   }
 }
 </style>

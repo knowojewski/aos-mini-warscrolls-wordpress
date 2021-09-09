@@ -1,5 +1,5 @@
 <template>
-  <div class="ms-creator__stats-form">
+  <div class="ms-creator__form">
     <h5 class="ms-creator__form-title">{{ t("stats-form-title") }}</h5>
     <div class="ms-creator__form-wrapper">
       <DatalistInput
@@ -15,6 +15,7 @@
         :input-label="t('unit-mount')"
         :input-value.sync="miniscroll.mount"
       />
+      <span class="divider black"></span>
       <div class="ms-creator__stats-wrapper">
         <div class="ms-creator__stats-left">
           <DatalistInput
@@ -38,7 +39,17 @@
             :datalist-options="miniscrollStore.bigStatsArray"
           />
         </div>
-        <div class="ms-creator__stats-right"></div>
+        <div class="ms-creator__stats-right">
+          <div class="stats-reminders">
+            <p class="stats-reminders__title">{{ t("stats-reminders") }}</p>
+            <DatalistInput
+              :datalist-label="t('first')"
+              input-style="secondary"
+              :datalist-value.sync="miniscroll.move"
+              :datalist-options="miniscrollStore.bigStatsArray"
+            />
+          </div>
+        </div>
       </div>
       {{ miniscroll.allegiance }}
       {{ miniscroll.name }}
@@ -71,4 +82,26 @@ export default class MiniscrollsStatsForm extends Vue {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.ms-creator {
+  &__stats-wrapper {
+    display: flex;
+  }
+
+  &__stats-left,
+  &__stats-right {
+    width: 50%;
+  }
+
+  &__stats-left {
+    padding-right: 16px;
+  }
+
+  &__stats-right {
+    padding-left: 16px;
+  }
+}
+
+.stats-reminders {
+}
+</style>

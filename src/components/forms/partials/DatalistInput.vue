@@ -1,9 +1,9 @@
 <template>
-  <div class="form-wrapper datalist">
+  <div class="form-wrapper datalist" :class="inputStyle">
     <label v-if="datalistLabel" class="form-label datalist__label"
       >{{ datalistLabel }}:</label
     >
-    <div class="datalist__input-wrapper">
+    <div ref="inputWrapper" class="datalist__input-wrapper">
       <input
         class="text-input datalist__input"
         type="text"
@@ -36,16 +36,24 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, PropSync, Vue, Watch } from "vue-property-decorator";
+import {
+  Component,
+  Prop,
+  PropSync,
+  Ref,
+  Vue,
+  Watch,
+} from "vue-property-decorator";
 
 @Component
 export default class DatalistInput extends Vue {
   @Prop(String) readonly datalistLabel?: string;
-  @Prop(String) readonly smallWrapper?: string;
+  @Prop({ default: "primary" }) readonly inputStyle?: string;
   @PropSync("datalistValue", { type: String }) syncedDatalistValue!:
     | string
     | number;
   @Prop(Array) readonly datalistOptions?: string[] | undefined;
+  @Ref("inputWrapper") readonly inputWrapper!: HTMLElement;
 
   dropdownActive: boolean = false;
   filteredOptions: string[] | undefined = [];
@@ -76,7 +84,10 @@ export default class DatalistInput extends Vue {
   closeIfOutside(e: Event): void {
     const target = e.target as HTMLElement;
 
-    if (!target?.closest(".datalist__input-wrapper")) {
+    if (
+      !target?.closest(".datalist__input-wrapper") ||
+      target?.closest(".datalist__input-wrapper") !== this.inputWrapper
+    ) {
       this.toggleDropdown();
     }
   }

@@ -27,6 +27,17 @@ a {
     text-decoration: none;
 }
 
+.divider {
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin: 16px 0;
+
+    &.black {
+        background-color: $black;
+    }
+}
+
 .page-content {
     padding-top: 80px;
     @include breakpoint-up($xxl) {
@@ -48,14 +59,16 @@ a {
 }
 
 .row {
-    margin-right: calc(var(--gutter-big) * -0.5);
-    margin-left: calc(var(--gutter-big) * -0.5);
+    margin-right: calc(var(--gutter) * -0.5);
+    margin-left: calc(var(--gutter) * -0.5);
+    display: flex;
+    flex-wrap: wrap;
 
     & > * {
         width: 100%;
         max-width: 100%;
-        padding-right: calc(var(--gutter-big) * 0.5);
-        padding-left: calc(var(--gutter-big) * 0.5);
+        padding-right: calc(var(--gutter) * 0.5);
+        padding-left: calc(var(--gutter) * 0.5);
     }
 }
 

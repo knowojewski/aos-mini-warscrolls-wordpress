@@ -1,5 +1,5 @@
 <template>
-  <div class="form-wrapper">
+  <div class="form-wrapper" :class="inputStyle">
     <label class="form-label">{{ inputLabel }}:</label>
     <input
       type="text"
@@ -16,6 +16,7 @@ import { Component, Prop, PropSync, Vue } from "vue-property-decorator";
 @Component
 export default class TextInput extends Vue {
   @Prop(String) readonly inputLabel?: string;
+  @Prop({ default: "primary" }) readonly inputStyle?: string;
   @PropSync("inputValue", { type: String }) syncedInputValue!: string | null;
 }
 </script>
