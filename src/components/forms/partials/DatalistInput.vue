@@ -186,4 +186,10 @@ export default class DatalistInput extends Vue {
     }
   }
 }
+
+.form-wrapper.secondary {
+  .datalist__input-wrapper {
+    background-color: $gray4;
+  }
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="accordion" :class="{ active: accordionActive }">
+  <div class="accordion" :class="{ active: accordionActive }" ref="accordion">
     <div class="accordion__header">
       <button @click="toggleAccordion" class="accordion__toggler">
         <h4 class="accordion__title">{{ t(accordionTitle) }}</h4>
@@ -24,6 +24,7 @@
 <script lang="ts">
 import { UseTranslation } from "@/decorators";
 import { Vue, Component, Prop, Ref } from "vue-property-decorator";
+import { scrollToElement } from "@/services/UIServices";
 
 @UseTranslation("miniscrolls")
 @Component
@@ -31,26 +32,25 @@ export default class Accordion extends Vue {
   @Prop(String) accordionTitle!: string;
   @Prop({ default: false }) activeOnLoad!: boolean;
   @Ref("accordionContent") readonly accordionContent!: HTMLElement;
+  @Ref("accordion") readonly accordion!: HTMLElement;
 
   accordionActive: boolean = false;
 
-  toggleAccordion(): void {
+  toggleAccordion(scroll: boolean = true): void {
     this.accordionActive = !this.accordionActive;
 
     if (this.accordionContent.style.maxHeight) {
       this.accordionContent.style.maxHeight = "";
-      this.accordionContent.style.paddingTop = "";
     } else {
-      this.accordionContent.style.maxHeight = `${
-        this.accordionContent.scrollHeight + 10
-      }px`;
-      this.accordionContent.style.paddingTop = "10px";
+      this.accordionContent.style.maxHeight = `${this.accordionContent.scrollHeight}px`;
+
+      scroll && scrollToElement(this.accordion, 65, 300);
     }
   }
 
   mounted(): void {
     if (this.activeOnLoad) {
-      this.toggleAccordion();
+      this.toggleAccordion(false);
     }
   }
 }
@@ -73,7 +73,7 @@ export default class Accordion extends Vue {
     height: 64px;
     top: -4px;
     left: -2px;
-    z-index: 0;
+    z-index: 2;
 
     img {
       width: 100%;
@@ -89,7 +89,7 @@ export default class Accordion extends Vue {
     width: 100%;
     height: 100%;
     padding: 4px 8px;
-    z-index: 1;
+    z-index: 3;
     cursor: pointer;
   }
 

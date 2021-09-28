@@ -57,6 +57,7 @@ export default class MiniscrollsStore extends VuexModule {
   ];
 
   public diceArray: string[] = ["1+", "2+", "3+", "4+", "5+", "6+"];
+  public remindersArray: string[] = ["+1*", "rr", "rr1"];
 
   get getMiniscroll(): MiniscrollInterface {
     return this.miniscroll;

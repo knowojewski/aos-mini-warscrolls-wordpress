@@ -1,0 +1,92 @@
+<template>
+  <div class="stats-reminders">
+    <p class="form-label stats-reminders__title">{{ t("stats-reminders") }}:</p>
+    <div class="stats-reminders__wrapper">
+      <div class="checkbox"></div>
+      <DatalistInput
+        :datalist-label="t('first')"
+        input-style="secondary"
+        :datalist-value.sync="miniscroll.statsReminders.move"
+        :datalist-options="miniscrollStore.remindersArray"
+      />
+      <DatalistInput
+        :datalist-label="t('first')"
+        input-style="secondary"
+        :datalist-value.sync="miniscroll.statsReminders.saveFirst"
+        :datalist-options="miniscrollStore.remindersArray"
+      />
+      <DatalistInput
+        :datalist-label="t('second')"
+        input-style="secondary"
+        :datalist-value.sync="miniscroll.statsReminders.saveSecond"
+        :datalist-options="miniscrollStore.remindersArray"
+      />
+      <DatalistInput
+        :datalist-label="t('first')"
+        input-style="secondary"
+        :datalist-value.sync="miniscroll.statsReminders.woundsFirst"
+        :datalist-options="miniscrollStore.remindersArray"
+      />
+      <DatalistInput
+        :datalist-label="t('second')"
+        input-style="secondary"
+        :datalist-value.sync="miniscroll.statsReminders.woundsSecond"
+        :datalist-options="miniscrollStore.remindersArray"
+      />
+      <DatalistInput
+        :datalist-label="t('first')"
+        input-style="secondary"
+        :datalist-value.sync="miniscroll.statsReminders.braveryFirst"
+        :datalist-options="miniscrollStore.remindersArray"
+      />
+      <DatalistInput
+        :datalist-label="t('second')"
+        input-style="secondary"
+        :datalist-value.sync="miniscroll.statsReminders.braverySecond"
+        :datalist-options="miniscrollStore.remindersArray"
+      />
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import DatalistInput from "@/components/forms/partials/DatalistInput.vue";
+import { UseTranslation } from "@/decorators";
+import { vxm } from "@/store/store.vuex";
+
+@UseTranslation("miniscrolls")
+@Component({
+  components: {
+    DatalistInput,
+  },
+})
+export default class StatsReminders extends Vue {
+  miniscroll = vxm.miniscrolls.miniscroll;
+  miniscrollStore = vxm.miniscrolls;
+}
+</script>
+
+<style lang="scss">
+.stats-reminders {
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 2px;
+  }
+
+  &__title {
+    width: 100%;
+    text-align: center;
+    line-height: 1;
+  }
+
+  .form-wrapper {
+    margin-bottom: 0;
+    .form-label {
+      display: none;
+    }
+  }
+}
+</style>

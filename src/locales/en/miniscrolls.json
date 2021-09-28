@@ -21,5 +21,7 @@
     "unit-bravery": "Bravery",
     "stats-reminders": "Reminders",
     "first": "First",
-    "second": "Second"
+    "second": "Second",
+    "create-miniscroll": "Create Miniscroll",
+    "clear-fields": "Clear Fields"
 }

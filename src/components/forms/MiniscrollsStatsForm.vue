@@ -15,7 +15,6 @@
         :input-label="t('unit-mount')"
         :input-value.sync="miniscroll.mount"
       />
-      <span class="divider black"></span>
       <div class="ms-creator__stats-wrapper">
         <div class="ms-creator__stats-left">
           <DatalistInput
@@ -40,24 +39,9 @@
           />
         </div>
         <div class="ms-creator__stats-right">
-          <div class="stats-reminders">
-            <p class="stats-reminders__title">{{ t("stats-reminders") }}</p>
-            <DatalistInput
-              :datalist-label="t('first')"
-              input-style="secondary"
-              :datalist-value.sync="miniscroll.move"
-              :datalist-options="miniscrollStore.bigStatsArray"
-            />
-          </div>
+          <StatsReminders />
         </div>
       </div>
-      {{ miniscroll.allegiance }}
-      {{ miniscroll.name }}
-      {{ miniscroll.mount }}
-      {{ miniscroll.move }}
-      {{ miniscroll.save }}
-      {{ miniscroll.wounds }}
-      {{ miniscroll.bravery }}
     </div>
   </div>
 </template>
@@ -67,6 +51,7 @@ import { UseTranslation } from "@/decorators";
 import { Component, Vue } from "vue-property-decorator";
 import { vxm } from "@/store/store.vuex";
 import DatalistInput from "@/components/forms/partials/DatalistInput.vue";
+import StatsReminders from "@/components/forms/partials/StatsReminders.vue";
 import TextInput from "@/components/forms/partials/TextInput.vue";
 
 @UseTranslation("miniscrolls")
@@ -74,6 +59,7 @@ import TextInput from "@/components/forms/partials/TextInput.vue";
   components: {
     DatalistInput,
     TextInput,
+    StatsReminders,
   },
 })
 export default class MiniscrollsStatsForm extends Vue {
@@ -85,6 +71,7 @@ export default class MiniscrollsStatsForm extends Vue {
 <style lang="scss">
 .ms-creator {
   &__stats-wrapper {
+    margin-top: 24px;
     display: flex;
   }
 
@@ -95,6 +82,7 @@ export default class MiniscrollsStatsForm extends Vue {
 
   &__stats-left {
     padding-right: 16px;
+    border-right: 1px solid $gray1;
   }
 
   &__stats-right {
