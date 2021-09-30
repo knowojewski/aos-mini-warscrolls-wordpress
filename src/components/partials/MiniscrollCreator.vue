@@ -114,7 +114,9 @@ export default class MiniscrollsCreator extends Vue {
       z-index: 1;
 
       .ms-creator__preview-title {
-        margin: 0 0 2px 0;
+        margin: 0 2px 2px 2px;
+        color: $white;
+        background-color: $black;
       }
     }
   }
@@ -129,6 +131,7 @@ export default class MiniscrollsCreator extends Vue {
     font-weight: 400;
     text-align: center;
     text-transform: uppercase;
+    transition: margin 0.3s, color 0.3s, background 0.3s;
 
     &::after,
     &::before {
@@ -164,7 +167,7 @@ export default class MiniscrollsCreator extends Vue {
     transition: color 0.3s;
 
     &.active {
-      color: $black;
+      color: $white;
     }
   }
 
