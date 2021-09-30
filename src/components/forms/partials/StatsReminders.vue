@@ -2,7 +2,10 @@
   <div class="stats-reminders">
     <p class="form-label stats-reminders__title">{{ t("stats-reminders") }}:</p>
     <div class="stats-reminders__wrapper">
-      <div class="checkbox"></div>
+      <CheckboxInput
+        :checkbox-label="t('unit-fly')"
+        :checkbox-value.sync="miniscroll.fly"
+      />
       <DatalistInput
         :datalist-label="t('first')"
         input-style="secondary"
@@ -52,6 +55,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import DatalistInput from "@/components/forms/partials/DatalistInput.vue";
+import CheckboxInput from "@/components/forms/partials/CheckboxInput.vue";
 import { UseTranslation } from "@/decorators";
 import { vxm } from "@/store/store.vuex";
 
@@ -59,6 +63,7 @@ import { vxm } from "@/store/store.vuex";
 @Component({
   components: {
     DatalistInput,
+    CheckboxInput,
   },
 })
 export default class StatsReminders extends Vue {
