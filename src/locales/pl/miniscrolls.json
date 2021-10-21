@@ -22,6 +22,18 @@
     "stats-reminders": "Przypominajki",
     "first": "Pierwsza",
     "second": "Druga",
+    "ms-preview": "Podgląd Miniscrolla",
     "create-miniscroll": "Stwórz Miniscrolla",
-    "clear-fields": "Wyczyść pola"
+    "clear-fields": "Wyczyść pola",
+    "weapon-repeater-label": "Dodaj wyposażenie jednostki",
+    "ability-repeater-label": "Dodaj zdolność jednostki",
+    "keyword-repeater-label": "Dodaj słowo-klucz jednostki",
+    "weapon-name": "Nazwa Broni",
+    "type": "Typ",
+    "range": "Zasięg",
+    "attack": "Atak",
+    "to-hit": "Trafienie",
+    "to-wound": "Zranienie",
+    "rend": "Przebicie",
+    "damage": "Obrażenia"
 }

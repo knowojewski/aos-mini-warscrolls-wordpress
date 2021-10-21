@@ -45,6 +45,7 @@
           v-for="(navItem, index) in navigationItems"
           :key="index"
           :link-props="navItem"
+          @link-clicked="toggleMenu"
         />
       </ul>
       <div class="main-nav__bottom-image">
@@ -58,11 +59,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import NavigationItem from "@/components/partials/NavigationItem.vue";
 import { LinkParams } from "@/interfaces/interfaces";
 import { UseTranslation } from "@/decorators";
-import { Route } from "vue-router";
 
 @UseTranslation("navigation")
 @Component({
@@ -93,11 +93,6 @@ export default class MainNavigation extends Vue {
 
   changeLanguage(lang: string): void {
     this.$i18n.locale = lang;
-  }
-
-  @Watch("$route", { immediate: true, deep: true })
-  onRouteChange(val: Route, oldVal: Route): void {
-    if (oldVal) this.toggleMenu();
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="form-wrapper" :class="inputStyle">
-    <label class="form-label">{{ inputLabel }}:</label>
+    <label v-if="showLabel" class="form-label">{{ inputLabel }}:</label>
     <input
       type="text"
       :placeholder="inputLabel"
@@ -18,6 +18,7 @@ export default class TextInput extends Vue {
   @Prop(String) readonly inputLabel?: string;
   @Prop({ default: "primary" }) readonly inputStyle?: string;
   @PropSync("inputValue", { type: String }) syncedInputValue!: string | null;
+  @Prop({ default: true }) readonly showLabel?: boolean;
 }
 </script>
 

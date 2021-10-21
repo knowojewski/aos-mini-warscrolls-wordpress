@@ -52,6 +52,17 @@
           </div>
         </div>
       </div>
+      <div class="ms-card__weapons">
+        <ul class="ms-card__weapons-list">
+          <li
+            v-for="(weapon, index) in miniscrollData.weapons"
+            :key="`${index} - ${weapon.name}`"
+            class="ms-card__weapon"
+          >
+            Unit Weapon: {{ weapon.name }} Unit Weapon: {{ weapon.type }}
+          </li>
+        </ul>
+      </div>
     </div>
     <div v-if="cardBack" class="ms-card__side back">
       <MiniscrollTop :miniscroll-data="miniscrollData" />

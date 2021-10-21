@@ -15,6 +15,7 @@ export interface MiniscrollInterface {
   wounds: string | null;
   bravery: string | null;
   statsReminders: StatsReminders;
+  weapons: Weapon[];
 }
 
 export interface StatsReminders {
@@ -25,4 +26,32 @@ export interface StatsReminders {
   woundsSecond: string | null;
   braveryFirst: string | null;
   braverySecond: string | null;
+}
+
+export interface Weapon {
+  id: number | null;
+  name: string | null;
+  type: string | null;
+  range: string | null;
+  attack: string | null;
+  hit: string | null;
+  wound: string | null;
+  rend: string | null;
+  damage: string | null;
+  reminders: WeaponReminders;
+}
+
+export interface WeaponReminders {
+  rangeFirst: string | null;
+  rangeSecond: string | null;
+  attackFirst: string | null;
+  attackSecond: string | null;
+  hitFirst: string | null;
+  hitSecond: string | null;
+  woundFirst: string | null;
+  woundSecond: string | null;
+  rendFirst: string | null;
+  rendSecond: string | null;
+  damageFirst: string | null;
+  damageSecond: string | null;
 }

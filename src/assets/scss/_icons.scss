@@ -26,6 +26,26 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.ms-icons-chevron-down:before {
+    content: "\e90c";
+}
+
+.ms-icons-chevron-left:before {
+    content: "\e90d";
+}
+
+.ms-icons-chevron-right:before {
+    content: "\e90e";
+}
+
+.ms-icons-chevron-up:before {
+    content: "\e90f";
+}
+
+.ms-icons-close:before {
+    content: "\e910";
+}
+
 .ms-icons-skull:before {
     content: "\e900";
 }

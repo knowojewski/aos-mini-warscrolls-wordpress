@@ -1,6 +1,6 @@
 <template>
   <div class="form-wrapper datalist" :class="inputStyle">
-    <label v-if="datalistLabel" class="form-label datalist__label"
+    <label v-if="showLabel" class="form-label datalist__label"
       >{{ datalistLabel }}:</label
     >
     <div ref="inputWrapper" class="datalist__input-wrapper">
@@ -10,7 +10,7 @@
         :placeholder="datalistLabel"
         v-model="syncedDatalistValue"
         tabindex="0"
-        @click="handleInput"
+        @click="toggleDropdown"
         @input="handleInput"
       />
       <span class="dropdown-arrow" :class="{ active: dropdownActive }">
@@ -53,6 +53,7 @@ export default class DatalistInput extends Vue {
     | string
     | number;
   @Prop(Array) readonly datalistOptions?: string[] | undefined;
+  @Prop({ default: true }) readonly showLabel?: boolean;
   @Ref("inputWrapper") readonly inputWrapper!: HTMLElement;
 
   dropdownActive: boolean = false;
@@ -120,7 +121,8 @@ export default class DatalistInput extends Vue {
 </script>
 
 <style lang="scss">
-.datalist {
+.datalist,
+.select {
   &__input-wrapper {
     height: 100%;
     position: relative;
@@ -134,6 +136,8 @@ export default class DatalistInput extends Vue {
     top: 50%;
     transform: translateY(-50%);
     z-index: 0;
+    opacity: 0;
+    transition: opacity 0.5s;
 
     span {
       background-color: $gray1;
@@ -151,6 +155,13 @@ export default class DatalistInput extends Vue {
     position: relative;
     z-index: 1;
     background-color: transparent;
+
+    &:hover,
+    &:focus {
+      ~ .dropdown-arrow {
+        opacity: 1;
+      }
+    }
   }
 
   &__dropdown {
@@ -188,7 +199,8 @@ export default class DatalistInput extends Vue {
 }
 
 .form-wrapper.secondary {
-  .datalist__input-wrapper {
+  .datalist__input-wrapper,
+  .select__input-wrapper {
     background-color: $gray4;
   }
 }

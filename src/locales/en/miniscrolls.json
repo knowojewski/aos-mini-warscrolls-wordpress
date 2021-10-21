@@ -22,6 +22,18 @@
     "stats-reminders": "Reminders",
     "first": "First",
     "second": "Second",
+    "ms-preview": "Miniscroll Preview",
     "create-miniscroll": "Create Miniscroll",
-    "clear-fields": "Clear Fields"
+    "clear-fields": "Clear Fields",
+    "weapon-repeater-label": "Add Unit Weapon",
+    "ability-repeater-label": "Add Unit Ability",
+    "keyword-repeater-label": "Add Unit Keyword",
+    "weapon-name": "Weapon Name",
+    "type": "Type",
+    "range": "Range",
+    "attack": "Attack",
+    "to-hit": "Hit",
+    "to-wound": "Wound",
+    "rend": "Rend",
+    "damage": "Damage"
 }

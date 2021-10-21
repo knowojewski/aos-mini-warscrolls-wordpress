@@ -7,16 +7,16 @@
     </div>
     <div class="container smaller-gutter">
       <div class="row">
-        <Accordion accordionTitle="accordion1-title" :activeOnLoad="false">
+        <BigAccordion accordionTitle="accordion1-title" :activeOnLoad="false">
           <template v-slot:accordionContent>
             <MiniscrollsCreator />
           </template>
-        </Accordion>
-        <Accordion accordionTitle="accordion2-title" :activeOnLoad="true">
+        </BigAccordion>
+        <BigAccordion accordionTitle="accordion2-title" :activeOnLoad="true">
           <template v-slot:accordionContent>
             <div class="your-ms">Test</div>
           </template>
-        </Accordion>
+        </BigAccordion>
       </div>
     </div>
     <!-- <div style="height: 100vh"></div>
@@ -28,7 +28,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import PageHeader from "@/components/partials/PageHeader.vue";
-import Accordion from "@/components/ui/Accordion.vue";
+import BigAccordion from "@/components/ui/BigAccordion.vue";
 import MiniscrollsCreator from "@/components/partials/MiniscrollCreator.vue";
 import { UseTranslation } from "@/decorators";
 
@@ -36,7 +36,7 @@ import { UseTranslation } from "@/decorators";
 @Component({
   components: {
     PageHeader,
-    Accordion,
+    BigAccordion,
     MiniscrollsCreator,
   },
 })

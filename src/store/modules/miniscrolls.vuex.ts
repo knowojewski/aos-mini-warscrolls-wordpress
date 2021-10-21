@@ -25,6 +25,7 @@ export default class MiniscrollsStore extends VuexModule {
       braveryFirst: null,
       braverySecond: null,
     },
+    weapons: [],
   };
 
   public allegiances: string[] = ["Stormcast Eternals", "Slaves to Darkness"];
@@ -55,9 +56,26 @@ export default class MiniscrollsStore extends VuexModule {
     "D6",
     "2D6",
   ];
-
+  public smallStatsArray: string[] = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "D3",
+    "2D3",
+    "D6",
+    "2D6",
+  ];
   public diceArray: string[] = ["1+", "2+", "3+", "4+", "5+", "6+"];
+  public rendArray: string[] = ["-1", "-2", "-3", "-4", "-5", "-6"];
   public remindersArray: string[] = ["+1*", "rr", "rr1"];
+  public weaponTypes: string[] = ["Melee", "Ranged"];
 
   get getMiniscroll(): MiniscrollInterface {
     return this.miniscroll;

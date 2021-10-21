@@ -1,6 +1,10 @@
 <template>
   <li class="main-nav__link-item">
-    <router-link class="btn btn-full" :to="getLinkProps.linkURL">
+    <router-link
+      @click.native="$emit('link-clicked')"
+      class="btn-full"
+      :to="getLinkProps.linkURL"
+    >
       <img
         class="btn-full__bg"
         src="../../assets/images/navigation/link-bg.png"

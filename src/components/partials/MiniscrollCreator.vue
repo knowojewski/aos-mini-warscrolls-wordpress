@@ -7,26 +7,15 @@
         @tabClick="changeTab"
       />
       <div class="tabs-block__blocks">
-        <div v-show="activeTab === 'stats'" class="ms-creator__form">
-          <MiniscrollsStatsForm />
-        </div>
-        <div v-show="activeTab === 'weapons'" class="ms-creator__form">
-          Weapons
-          <div style="height: 250px"></div>
-        </div>
-        <div v-show="activeTab === 'abilities'" class="ms-creator__form">
-          Abilities
-          <div style="height: 200px"></div>
-        </div>
-        <div v-show="activeTab === 'keywords'" class="ms-creator__form">
-          Keywords
-          <div style="height: 100px"></div>
-        </div>
+        <MiniscrollsStatsForm v-show="activeTab === 'stats'" />
+        <MiniscrollsWeaponsForm v-show="activeTab === 'weapons'" />
+        <MiniscrollsAbilitiesForm v-show="activeTab === 'abilities'" />
+        <MiniscrollsKeywordsForm v-show="activeTab === 'keywords'" />
       </div>
     </div>
     <div class="ms-creator__preview" :class="{ pinned: previewPinned }">
       <h5 class="ms-creator__preview-title">
-        Miniscroll Preview
+        {{ t("ms-preview") }}
         <button
           class="ms-creator__preview-btn"
           @click="pinPreviewOn"
@@ -38,8 +27,8 @@
       <MiniscrollCard :miniscroll-data="miniscroll" />
     </div>
     <div class="ms-creator__buttons">
-      <button class="btn-ghost">{{ t("clear-fields") }}</button>
-      <button class="btn-ghost">{{ t("create-miniscroll") }}</button>
+      <button class="btn-ghost gray-bg">{{ t("clear-fields") }}</button>
+      <button class="btn red-bg">{{ t("create-miniscroll") }}</button>
     </div>
   </div>
 </template>
@@ -50,6 +39,9 @@ import TabsBlock from "@/components/ui/TabsBlock.vue";
 import { UseTranslation } from "@/decorators";
 import { vxm } from "@/store/store.vuex";
 import MiniscrollsStatsForm from "@/components/forms/MiniscrollsStatsForm.vue";
+import MiniscrollsWeaponsForm from "@/components/forms/MiniscrollsWeaponsForm.vue";
+import MiniscrollsAbilitiesForm from "@/components/forms/MiniscrollsAbilitiesForm.vue";
+import MiniscrollsKeywordsForm from "@/components/forms/MiniscrollsKeywordsForm.vue";
 import MiniscrollCard from "@/components/partials/MiniscrollCard.vue";
 
 @UseTranslation("miniscrolls")
@@ -57,6 +49,9 @@ import MiniscrollCard from "@/components/partials/MiniscrollCard.vue";
   components: {
     TabsBlock,
     MiniscrollsStatsForm,
+    MiniscrollsWeaponsForm,
+    MiniscrollsAbilitiesForm,
+    MiniscrollsKeywordsForm,
     MiniscrollCard,
   },
 })
@@ -97,6 +92,14 @@ export default class MiniscrollsCreator extends Vue {
   overflow-y: auto;
   height: calc(100vh - 150px);
 
+  &__form {
+    min-height: 250px;
+
+    .repeater {
+      width: 100%;
+    }
+  }
+
   &__main {
     padding-bottom: 20px;
     position: relative;
@@ -116,7 +119,7 @@ export default class MiniscrollsCreator extends Vue {
       .ms-creator__preview-title {
         margin: 0 2px 2px 2px;
         color: $white;
-        background-color: $black;
+        background-color: $primary-red;
       }
     }
   }
@@ -128,7 +131,7 @@ export default class MiniscrollsCreator extends Vue {
     padding: 6px 36px;
     margin: 0 4px 24px 4px;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 500;
     text-align: center;
     text-transform: uppercase;
     transition: margin 0.3s, color 0.3s, background 0.3s;
@@ -166,6 +169,10 @@ export default class MiniscrollsCreator extends Vue {
     color: $dark-gray3;
     transition: color 0.3s;
 
+    &:hover {
+      color: $black;
+    }
+
     &.active {
       color: $white;
     }
@@ -176,7 +183,7 @@ export default class MiniscrollsCreator extends Vue {
     padding-bottom: 8px;
     margin-bottom: 24px;
     font-size: 18px;
-    font-weight: 400;
+    font-weight: 600;
 
     &::after {
       content: "";
@@ -203,7 +210,6 @@ export default class MiniscrollsCreator extends Vue {
 
     button {
       width: 49.5%;
-      padding: 4px 8px;
     }
   }
 }

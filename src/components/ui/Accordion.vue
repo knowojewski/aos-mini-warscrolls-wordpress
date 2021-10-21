@@ -1,110 +1,63 @@
 <template>
-  <div class="accordion" :class="{ active: accordionActive }" ref="accordion">
-    <div class="accordion__header">
-      <button @click="toggleAccordion" class="accordion__toggler">
-        <h4 class="accordion__title">{{ t(accordionTitle) }}</h4>
-        <span class="dropdown-arrow" :class="{ active: accordionActive }">
-          <span></span>
-          <span></span>
-        </span>
-      </button>
-      <div class="accordion__header-bg">
-        <img
-          src="../../assets/images/your-scrolls/top-bg.png"
-          alt="Top Background"
-        />
-      </div>
-    </div>
-    <div ref="accordionContent" class="accordion__content">
-      <slot name="accordionContent"></slot>
+  <div class="acc">
+    <button
+      class="acc__toggler"
+      :class="[togglerClass, { active: accordionActive }]"
+      @click="toggleAcc"
+    >
+      <slot name="accToggler"></slot>
+      <span class="dropdown-arrow black" :class="{ active: accordionActive }">
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+    <div
+      class="acc__content"
+      :class="[contentClass, { active: accordionActive }]"
+      ref="accordionContent"
+    >
+      <slot name="accContent"></slot>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { UseTranslation } from "@/decorators";
-import { Vue, Component, Prop, Ref } from "vue-property-decorator";
-import { scrollToElement } from "@/services/UIServices";
+import { Component, Vue, Prop, Ref } from "vue-property-decorator";
 
-@UseTranslation("miniscrolls")
 @Component
 export default class Accordion extends Vue {
-  @Prop(String) accordionTitle!: string;
-  @Prop({ default: false }) activeOnLoad!: boolean;
+  @Prop(String) readonly togglerClass!: string;
+  @Prop(String) readonly contentClass!: string;
   @Ref("accordionContent") readonly accordionContent!: HTMLElement;
-  @Ref("accordion") readonly accordion!: HTMLElement;
 
   accordionActive: boolean = false;
+  overflowTimeout: number = 0;
 
-  toggleAccordion(scroll: boolean = true): void {
+  private toggleAcc(): void {
     this.accordionActive = !this.accordionActive;
 
     if (this.accordionContent.style.maxHeight) {
       this.accordionContent.style.maxHeight = "";
+      this.accordionContent.style.overflow = "";
+      clearTimeout(this.overflowTimeout);
     } else {
       this.accordionContent.style.maxHeight = `${this.accordionContent.scrollHeight}px`;
-
-      scroll && scrollToElement(this.accordion, 65, 300);
-    }
-  }
-
-  mounted(): void {
-    if (this.activeOnLoad) {
-      this.toggleAccordion(false);
+      this.overflowTimeout = setTimeout(() => {
+        this.accordionContent.style.overflow = "visible";
+      }, 300);
     }
   }
 }
 </script>
 
 <style lang="scss">
-.accordion {
-  width: 100%;
-  margin-bottom: 20px;
-
-  &__header {
-    width: 100%;
-    height: 50px;
-    position: relative;
-  }
-
-  &__header-bg {
-    position: absolute;
-    width: calc(100% + 4px);
-    height: 64px;
-    top: -4px;
-    left: -2px;
-    z-index: 2;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
-  &__toggler {
-    position: relative;
-    color: $white;
-    @include display-flex(row, space-between, center, nowrap);
-    width: 100%;
-    height: 100%;
-    padding: 4px 8px;
-    z-index: 3;
-    cursor: pointer;
-  }
-
-  &__title {
-    text-transform: uppercase;
-    font-weight: 400;
-  }
-
+.acc {
   &__content {
-    max-height: 0;
-    padding-top: 0;
-    background-color: $white;
     overflow: hidden;
-    border: 1px solid $black;
-    transition: max-height 0.3s, padding 0.3s;
+    // visibility: hidden;
+    // opacity: 0;
+    max-height: 0;
+    transition: max-height 0.3s, overflow 0.3s 0.2s;
   }
 }
 </style>
