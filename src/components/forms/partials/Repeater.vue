@@ -7,7 +7,7 @@
         <span class="bar horizontal"></span>
       </span>
     </button>
-    <ul class="repeater__list">
+    <ul ref="repeaterList" class="repeater__list">
       <slot name="list-items"></slot>
     </ul>
   </div>

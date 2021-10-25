@@ -1,4 +1,5 @@
 export const scrollToElement = (
+  scrollContainer: HTMLElement,
   element: HTMLElement,
   offset: number,
   delay: number = 0
@@ -6,6 +7,6 @@ export const scrollToElement = (
   setTimeout(() => {
     const elementPosition = element.offsetTop;
 
-    window.scroll(0, elementPosition - offset);
+    scrollContainer.scroll(0, elementPosition - offset);
   }, delay);
 };

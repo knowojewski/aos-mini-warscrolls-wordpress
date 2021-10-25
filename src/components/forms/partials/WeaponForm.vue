@@ -65,13 +65,21 @@
       </div>
     </div>
     <div class="wpn-form__buttons">
-      <button class="close btn red-bg">
+      <button @click="deleteForm(formData.id)" class="close btn red-bg">
         <span class="ms-icons-close"></span>
       </button>
-      <button class="move-up btn gray-bg">
+      <button
+        v-if="itemIndex !== 0"
+        @click="moveWeapon(-1, formData.id)"
+        class="move-up btn gray-bg"
+      >
         <span class="ms-icons-chevron-up"></span>
       </button>
-      <button class="move-down btn gray-bg">
+      <button
+        v-if="itemIndex < miniscroll.weapons.length - 1"
+        @click="moveWeapon(1, formData.id)"
+        class="move-down btn gray-bg"
+      >
         <span class="ms-icons-chevron-down"></span>
       </button>
     </div>
@@ -101,9 +109,22 @@ import { vxm } from "@/store/store.vuex";
 })
 export default class WeaponForm extends Vue {
   @Prop(Object) readonly formData!: Weapon;
+  @Prop(Number) readonly itemIndex!: number;
 
   miniscroll = vxm.miniscrolls.miniscroll;
   miniscrollStore = vxm.miniscrolls;
+
+  private deleteForm(id: number): void {
+    this.miniscrollStore.deleteItem({ id, array: this.miniscroll.weapons });
+  }
+
+  private moveWeapon(direction: number, id: number) {
+    this.miniscrollStore.moveItem({
+      direction,
+      id,
+      array: this.miniscroll.weapons,
+    });
+  }
 }
 </script>
 

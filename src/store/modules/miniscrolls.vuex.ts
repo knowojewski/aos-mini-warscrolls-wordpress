@@ -1,5 +1,10 @@
-import { createModule } from "vuex-class-component";
-import { MiniscrollInterface } from "@/interfaces/interfaces";
+import { createModule, mutation } from "vuex-class-component";
+import {
+  MiniscrollInterface,
+  Weapon,
+  Ability,
+  Keyword,
+} from "@/interfaces/interfaces";
 
 const VuexModule = createModule({
   namespaced: "miniscrolls",
@@ -79,5 +84,33 @@ export default class MiniscrollsStore extends VuexModule {
 
   get getMiniscroll(): MiniscrollInterface {
     return this.miniscroll;
+  }
+
+  @mutation addItem(payload: {
+    item: Weapon | Ability | Keyword;
+    array: Array<Weapon | Ability | Keyword>;
+  }): void {
+    payload.array.push(payload.item);
+  }
+
+  @mutation deleteItem(payload: {
+    id: number;
+    array: Array<Weapon | Ability | Keyword>;
+  }): void {
+    const index = payload.array.findIndex((item) => item.id === payload.id);
+
+    payload.array.splice(index, 1);
+  }
+
+  @mutation moveItem(payload: {
+    id: number;
+    direction: number;
+    array: Array<Weapon | Ability | Keyword>;
+  }): void {
+    const index = payload.array.findIndex((item) => item.id === payload.id);
+    const newIndex = index + payload.direction;
+    const itemToMove = payload.array.splice(index, 1);
+
+    payload.array.splice(newIndex, 0, ...itemToMove);
   }
 }

@@ -45,7 +45,12 @@ export default class BigAccordion extends Vue {
       this.accordionContent.style.maxHeight = `${this.accordionContent.scrollHeight}px`;
 
       if (scroll) {
-        scrollToElement(this.accordion, 65, 300);
+        scrollToElement(
+          window as unknown as HTMLElement,
+          this.accordion,
+          65,
+          300
+        );
       }
     }
   }

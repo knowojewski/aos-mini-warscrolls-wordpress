@@ -55,3 +55,15 @@ export interface WeaponReminders {
   damageFirst: string | null;
   damageSecond: string | null;
 }
+
+export interface Ability {
+  id: number | null;
+  type: string | null;
+  name: string | null;
+  desc: string | null;
+}
+
+export interface Keyword {
+  id: number | null;
+  name: string | null;
+}
