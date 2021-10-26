@@ -1,6 +1,6 @@
 <template>
   <div class="wpn-reminders">
-    <span class="wpn-form__text">{{ t("range") }}:</span>
+    <span class="ms-form__text">{{ t("range") }}:</span>
     <DatalistInput
       :datalist-label="t('first')"
       :datalist-value.sync="formData.reminders.rangeFirst"
@@ -15,7 +15,7 @@
       :show-label="false"
       input-style="secondary"
     />
-    <span class="wpn-form__text">{{ t("attack") }}:</span>
+    <span class="ms-form__text">{{ t("attack") }}:</span>
     <DatalistInput
       :datalist-label="t('first')"
       :datalist-value.sync="formData.reminders.attackFirst"
@@ -30,7 +30,7 @@
       :show-label="false"
       input-style="secondary"
     />
-    <span class="wpn-form__text">{{ t("to-hit") }}:</span>
+    <span class="ms-form__text">{{ t("to-hit") }}:</span>
     <DatalistInput
       :datalist-label="t('first')"
       :datalist-value.sync="formData.reminders.hitFirst"
@@ -45,7 +45,7 @@
       :show-label="false"
       input-style="secondary"
     />
-    <span class="wpn-form__text">{{ t("to-wound") }}:</span>
+    <span class="ms-form__text">{{ t("to-wound") }}:</span>
     <DatalistInput
       :datalist-label="t('first')"
       :datalist-value.sync="formData.reminders.woundFirst"
@@ -60,7 +60,7 @@
       :show-label="false"
       input-style="secondary"
     />
-    <span class="wpn-form__text">{{ t("rend") }}:</span>
+    <span class="ms-form__text">{{ t("rend") }}:</span>
     <DatalistInput
       :datalist-label="t('first')"
       :datalist-value.sync="formData.reminders.rendFirst"
@@ -75,7 +75,7 @@
       :show-label="false"
       input-style="secondary"
     />
-    <span class="wpn-form__text">{{ t("damage") }}:</span>
+    <span class="ms-form__text">{{ t("damage") }}:</span>
     <DatalistInput
       :datalist-label="t('first')"
       :datalist-value.sync="formData.reminders.damageFirst"
@@ -122,7 +122,7 @@ export default class WeaponReminders extends Vue {
   gap: 4px;
   padding: 8px 0;
 
-  .form-wrapper {
+  .form-field {
     margin: 0;
   }
 }

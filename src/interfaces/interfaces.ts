@@ -16,6 +16,8 @@ export interface MiniscrollInterface {
   bravery: string | null;
   statsReminders: StatsReminders;
   weapons: Weapon[];
+  abilities: Ability[];
+  keywords: Keyword[];
 }
 
 export interface StatsReminders {

@@ -89,7 +89,4 @@ export default class MiniscrollsStatsForm extends Vue {
     padding-left: 16px;
   }
 }
-
-.stats-reminders {
-}
 </style>

@@ -16,20 +16,20 @@ textarea,
     }
 }
 
-.form-wrapper {
+.form-field {
     width: 100%;
     display: flex;
     flex-direction: column;
     margin-bottom: 8px;
 
     &.secondary {
-        >.text-input {
+        .text-input {
             background-color: $gray4;
         }
     }
 }
 
-.form-label {
+.form-field__label {
     width: fit-content;
     font-size: 12px;
     font-weight: 700;
@@ -38,6 +38,7 @@ textarea,
 }
 
 .text-input {
+    width: 100%;
     height: 30px;
     flex-grow: 1;
     padding-left: 4px;
@@ -47,6 +48,10 @@ textarea,
 
     &::placeholder {
         font-style: italic;
+    }
+
+    &.textarea {
+        padding-top: 3px;
     }
 }
 

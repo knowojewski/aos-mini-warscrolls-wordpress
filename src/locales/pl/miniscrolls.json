@@ -35,5 +35,8 @@
     "to-hit": "Trafienie",
     "to-wound": "Zranienie",
     "rend": "Przebicie",
-    "damage": "Obrażenia"
+    "damage": "Obrażenia",
+    "ability-name": "Nazwa Zdolności",
+    "description": "Opis",
+    "keyword": "Słowo-klucz"
 }

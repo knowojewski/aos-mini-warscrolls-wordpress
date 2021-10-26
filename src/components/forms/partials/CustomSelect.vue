@@ -1,6 +1,6 @@
 <template>
-  <div class="form-wrapper select" :class="inputStyle">
-    <label v-if="showLabel" class="form-label select__label"
+  <div class="form-field select" :class="inputStyle">
+    <label v-if="showLabel" class="form-field__label select__label"
       >{{ selectLabel }}:</label
     >
     <div ref="inputWrapper" class="select__input-wrapper">
@@ -17,7 +17,11 @@
           syncedSelectValue
         }}</span>
       </div>
-      <span class="dropdown-arrow" :class="{ active: dropdownActive }">
+      <span
+        class="dropdown-arrow"
+        :class="{ active: dropdownActive }"
+        @click="toggleDropdown"
+      >
         <span></span>
         <span></span>
       </span>
@@ -114,5 +118,16 @@ export default class CustomSelect extends Vue {
 
 .custom-select {
   cursor: pointer;
+  position: relative;
+
+  &::after {
+    content: "";
+    width: 24px;
+    height: 100%;
+    position: absolute;
+    background-color: $white;
+    right: 0;
+    top: 0;
+  }
 }
 </style>

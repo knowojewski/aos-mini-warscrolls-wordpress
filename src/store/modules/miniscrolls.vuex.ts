@@ -31,6 +31,8 @@ export default class MiniscrollsStore extends VuexModule {
       braverySecond: null,
     },
     weapons: [],
+    abilities: [],
+    keywords: [],
   };
 
   public allegiances: string[] = ["Stormcast Eternals", "Slaves to Darkness"];
@@ -81,6 +83,7 @@ export default class MiniscrollsStore extends VuexModule {
   public rendArray: string[] = ["-1", "-2", "-3", "-4", "-5", "-6"];
   public remindersArray: string[] = ["+1*", "rr", "rr1"];
   public weaponTypes: string[] = ["Melee", "Ranged"];
+  public abilityTypes: string[] = ["Command Ability", "Ability", "Spell"];
 
   get getMiniscroll(): MiniscrollInterface {
     return this.miniscroll;

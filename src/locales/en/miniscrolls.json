@@ -35,5 +35,8 @@
     "to-hit": "Hit",
     "to-wound": "Wound",
     "rend": "Rend",
-    "damage": "Damage"
+    "damage": "Damage",
+    "ability-name": "Ability Name",
+    "description": "Description",
+    "keyword": "Keyword"
 }

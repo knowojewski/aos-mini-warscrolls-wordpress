@@ -1,6 +1,6 @@
 <template>
-  <div class="form-wrapper datalist" :class="inputStyle">
-    <label v-if="showLabel" class="form-label datalist__label"
+  <div class="form-field datalist" :class="inputStyle">
+    <label v-if="showLabel" class="form-field__label datalist__label"
       >{{ datalistLabel }}:</label
     >
     <div ref="inputWrapper" class="datalist__input-wrapper">
@@ -166,16 +166,18 @@ export default class DatalistInput extends Vue {
 
   &__dropdown {
     position: absolute;
-    top: 100%;
+    top: calc(100% - 1px);
     left: 0;
-    right: 0;
+    min-width: 100%;
+    width: max-content;
     max-height: 150px;
     overflow-y: auto;
     border-bottom: 1px solid $gray1;
+    border-top: 1px solid $black;
     z-index: 10;
 
     li {
-      padding: 4px;
+      padding: 4px 8px;
       cursor: pointer;
       background-color: $gray6;
       color: $black;

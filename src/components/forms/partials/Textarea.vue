@@ -1,12 +1,11 @@
 <template>
   <div class="form-field" :class="inputStyle">
     <label v-if="showLabel" class="form-field__label">{{ inputLabel }}:</label>
-    <input
-      type="text"
+    <textarea
       :placeholder="inputLabel"
       v-model="syncedInputValue"
-      class="text-input"
-    />
+      class="text-input textarea"
+    ></textarea>
   </div>
 </template>
 
@@ -14,7 +13,7 @@
 import { Component, Prop, PropSync, Vue } from "vue-property-decorator";
 
 @Component
-export default class TextInput extends Vue {
+export default class Textarea extends Vue {
   @Prop(String) readonly inputLabel?: string;
   @Prop({ default: "primary" }) readonly inputStyle?: string;
   @PropSync("inputValue", { type: String }) syncedInputValue!: string | null;

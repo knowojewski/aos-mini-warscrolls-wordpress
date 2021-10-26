@@ -1,6 +1,8 @@
 <template>
   <div class="stats-reminders">
-    <p class="form-label stats-reminders__title">{{ t("stats-reminders") }}:</p>
+    <p class="form-field__label stats-reminders__title">
+      {{ t("stats-reminders") }}:
+    </p>
     <div class="stats-reminders__wrapper">
       <CheckboxInput
         :checkbox-label="t('unit-fly')"
@@ -87,9 +89,9 @@ export default class StatsReminders extends Vue {
     line-height: 1;
   }
 
-  .form-wrapper {
+  .form-field {
     margin-bottom: 0;
-    .form-label {
+    .form-field__label {
       display: none;
     }
   }

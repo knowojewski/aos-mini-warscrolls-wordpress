@@ -64,7 +64,7 @@ export default class Repeater extends Vue {
       top: 50%;
       left: 50%;
       display: inline-block;
-      width: 3px;
+      width: 2px;
       height: 22px;
       background-color: $white;
       transform: translate(-50%, -50%);
