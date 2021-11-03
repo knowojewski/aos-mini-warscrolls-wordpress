@@ -48,7 +48,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import TextInput from "@/components/forms/partials/TextInput.vue";
 import Textarea from "@/components/forms/partials/Textarea.vue";
 import CustomSelect from "@/components/forms/partials/CustomSelect.vue";
-import { UseTranslation } from "@/decorators";
+import { UseTranslation } from "@/utils/decorators";
 import { vxm } from "@/store/store.vuex";
 
 @UseTranslation("miniscrolls")

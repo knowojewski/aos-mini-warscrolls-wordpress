@@ -3,14 +3,14 @@
     <span class="ms-form__text">{{ t("range") }}:</span>
     <DatalistInput
       :datalist-label="t('first')"
-      :datalist-value.sync="formData.reminders.rangeFirst"
+      :datalist-value.sync="formData.rangeFirst"
       :datalist-options="miniscrollStore.remindersArray"
       :show-label="false"
       input-style="secondary"
     />
     <DatalistInput
       :datalist-label="t('second')"
-      :datalist-value.sync="formData.reminders.rangeSecond"
+      :datalist-value.sync="formData.rangeSecond"
       :datalist-options="miniscrollStore.remindersArray"
       :show-label="false"
       input-style="secondary"
@@ -18,14 +18,14 @@
     <span class="ms-form__text">{{ t("attack") }}:</span>
     <DatalistInput
       :datalist-label="t('first')"
-      :datalist-value.sync="formData.reminders.attackFirst"
+      :datalist-value.sync="formData.attackFirst"
       :datalist-options="miniscrollStore.remindersArray"
       :show-label="false"
       input-style="secondary"
     />
     <DatalistInput
       :datalist-label="t('second')"
-      :datalist-value.sync="formData.reminders.attackSecond"
+      :datalist-value.sync="formData.attackSecond"
       :datalist-options="miniscrollStore.remindersArray"
       :show-label="false"
       input-style="secondary"
@@ -33,14 +33,14 @@
     <span class="ms-form__text">{{ t("to-hit") }}:</span>
     <DatalistInput
       :datalist-label="t('first')"
-      :datalist-value.sync="formData.reminders.hitFirst"
+      :datalist-value.sync="formData.hitFirst"
       :datalist-options="miniscrollStore.remindersArray"
       :show-label="false"
       input-style="secondary"
     />
     <DatalistInput
       :datalist-label="t('second')"
-      :datalist-value.sync="formData.reminders.hitSecond"
+      :datalist-value.sync="formData.hitSecond"
       :datalist-options="miniscrollStore.remindersArray"
       :show-label="false"
       input-style="secondary"
@@ -48,14 +48,14 @@
     <span class="ms-form__text">{{ t("to-wound") }}:</span>
     <DatalistInput
       :datalist-label="t('first')"
-      :datalist-value.sync="formData.reminders.woundFirst"
+      :datalist-value.sync="formData.woundFirst"
       :datalist-options="miniscrollStore.remindersArray"
       :show-label="false"
       input-style="secondary"
     />
     <DatalistInput
       :datalist-label="t('second')"
-      :datalist-value.sync="formData.reminders.woundSecond"
+      :datalist-value.sync="formData.woundSecond"
       :datalist-options="miniscrollStore.remindersArray"
       :show-label="false"
       input-style="secondary"
@@ -63,14 +63,14 @@
     <span class="ms-form__text">{{ t("rend") }}:</span>
     <DatalistInput
       :datalist-label="t('first')"
-      :datalist-value.sync="formData.reminders.rendFirst"
+      :datalist-value.sync="formData.rendFirst"
       :datalist-options="miniscrollStore.remindersArray"
       :show-label="false"
       input-style="secondary"
     />
     <DatalistInput
       :datalist-label="t('second')"
-      :datalist-value.sync="formData.reminders.rendSecond"
+      :datalist-value.sync="formData.rendSecond"
       :datalist-options="miniscrollStore.remindersArray"
       :show-label="false"
       input-style="secondary"
@@ -78,14 +78,14 @@
     <span class="ms-form__text">{{ t("damage") }}:</span>
     <DatalistInput
       :datalist-label="t('first')"
-      :datalist-value.sync="formData.reminders.damageFirst"
+      :datalist-value.sync="formData.damageFirst"
       :datalist-options="miniscrollStore.remindersArray"
       :show-label="false"
       input-style="secondary"
     />
     <DatalistInput
       :datalist-label="t('second')"
-      :datalist-value.sync="formData.reminders.damageSecond"
+      :datalist-value.sync="formData.damageSecond"
       :datalist-options="miniscrollStore.remindersArray"
       :show-label="false"
       input-style="secondary"
@@ -97,7 +97,7 @@
 import { Weapon } from "@/interfaces/interfaces";
 import { Component, Prop, Vue } from "vue-property-decorator";
 import DatalistInput from "@/components/forms/partials/DatalistInput.vue";
-import { UseTranslation } from "@/decorators";
+import { UseTranslation } from "@/utils/decorators";
 import { vxm } from "@/store/store.vuex";
 
 @UseTranslation("miniscrolls")

@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { UseTranslation } from "@/decorators";
+import { UseTranslation } from "@/utils/decorators";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @UseTranslation("miniscrolls")

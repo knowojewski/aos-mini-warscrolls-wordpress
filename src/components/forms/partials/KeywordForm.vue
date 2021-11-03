@@ -35,7 +35,7 @@
 import { Keyword } from "@/interfaces/interfaces";
 import { Component, Prop, Vue } from "vue-property-decorator";
 import TextInput from "@/components/forms/partials/TextInput.vue";
-import { UseTranslation } from "@/decorators";
+import { UseTranslation } from "@/utils/decorators";
 import { vxm } from "@/store/store.vuex";
 
 @UseTranslation("miniscrolls")

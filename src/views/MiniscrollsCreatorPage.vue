@@ -30,7 +30,7 @@ import { Component, Vue } from "vue-property-decorator";
 import PageHeader from "@/components/partials/PageHeader.vue";
 import BigAccordion from "@/components/ui/BigAccordion.vue";
 import MiniscrollsCreator from "@/components/partials/MiniscrollCreator.vue";
-import { UseTranslation } from "@/decorators";
+import { UseTranslation } from "@/utils/decorators";
 
 @UseTranslation("miniscrolls")
 @Component({

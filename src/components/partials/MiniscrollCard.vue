@@ -71,7 +71,7 @@
 </template>
 
 <script lang="ts">
-import { UseTranslation } from "@/decorators";
+import { UseTranslation } from "@/utils/decorators";
 import { MiniscrollInterface } from "@/interfaces/interfaces";
 import { Component, Prop, Vue } from "vue-property-decorator";
 import MiniscrollTop from "./miniscroll-parts/MiniscrollTop.vue";

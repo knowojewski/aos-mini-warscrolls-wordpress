@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { UseTranslation } from "@/decorators";
+import { UseTranslation } from "@/utils/decorators";
 import { Component, Prop, Ref, Vue } from "vue-property-decorator";
 import Repeater from "@/components/forms/partials/Repeater.vue";
 import { scrollToElement } from "@/services/UIServices";
@@ -54,7 +54,7 @@ export default class MiniscrollsRepeaterForm extends Vue {
   get itemComponent(): any {
     const componentPath = this.repeaterComponent;
 
-    return () => import(`${componentPath}`);
+    return () => import(`@/components/${componentPath}.vue`);
   }
 
   get repeaterItems(): HTMLCollection {
@@ -64,7 +64,7 @@ export default class MiniscrollsRepeaterForm extends Vue {
   addForm(): void {
     const itemID = Date.now() + Math.random();
 
-    const item: Keyword | Weapon | Ability = this.repeaterItem;
+    const item: Keyword | Weapon | Ability = { ...this.repeaterItem };
 
     item.id = itemID;
 
@@ -73,10 +73,10 @@ export default class MiniscrollsRepeaterForm extends Vue {
       array: this.repeaterArray,
     });
 
-    this.scrollToKeywordForm();
+    this.scrollToForm();
   }
 
-  scrollToKeywordForm(): void {
+  scrollToForm(): void {
     setTimeout(() => {
       this.msCreator = this.repeater.$el.closest(".ms-creator") as HTMLElement;
 

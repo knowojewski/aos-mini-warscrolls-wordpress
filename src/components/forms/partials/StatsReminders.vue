@@ -58,7 +58,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import DatalistInput from "@/components/forms/partials/DatalistInput.vue";
 import CheckboxInput from "@/components/forms/partials/CheckboxInput.vue";
-import { UseTranslation } from "@/decorators";
+import { UseTranslation } from "@/utils/decorators";
 import { vxm } from "@/store/store.vuex";
 
 @UseTranslation("miniscrolls")

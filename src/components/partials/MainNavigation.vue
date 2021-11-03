@@ -62,7 +62,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import NavigationItem from "@/components/partials/NavigationItem.vue";
 import { LinkParams } from "@/interfaces/interfaces";
-import { UseTranslation } from "@/decorators";
+import { UseTranslation } from "@/utils/decorators";
 
 @UseTranslation("navigation")
 @Component({

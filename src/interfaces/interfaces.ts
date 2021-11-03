@@ -6,6 +6,7 @@ export interface LinkParams {
 }
 
 export interface MiniscrollInterface {
+  id: number | null;
   allegiance: string | null;
   name: string | null;
   mount: string | null;
@@ -40,7 +41,18 @@ export interface Weapon {
   wound: string | null;
   rend: string | null;
   damage: string | null;
-  reminders: WeaponReminders;
+  rangeFirst: string | null;
+  rangeSecond: string | null;
+  attackFirst: string | null;
+  attackSecond: string | null;
+  hitFirst: string | null;
+  hitSecond: string | null;
+  woundFirst: string | null;
+  woundSecond: string | null;
+  rendFirst: string | null;
+  rendSecond: string | null;
+  damageFirst: string | null;
+  damageSecond: string | null;
 }
 
 export interface WeaponReminders {

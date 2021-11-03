@@ -94,7 +94,7 @@ import DatalistInput from "@/components/forms/partials/DatalistInput.vue";
 import CustomSelect from "@/components/forms/partials/CustomSelect.vue";
 import Accordion from "@/components/ui/Accordion.vue";
 import WeaponReminders from "@/components/forms/partials/WeaponReminders.vue";
-import { UseTranslation } from "@/decorators";
+import { UseTranslation } from "@/utils/decorators";
 import { vxm } from "@/store/store.vuex";
 
 @UseTranslation("miniscrolls")

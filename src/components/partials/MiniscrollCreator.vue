@@ -8,16 +8,26 @@
       />
       <div class="tabs-block__blocks">
         <MiniscrollsStatsForm v-show="activeTab === 'stats'" />
-        <MiniscrollsWeaponsForm v-show="activeTab === 'weapons'" />
-        <MiniscrollsAbilitiesForm v-show="activeTab === 'abilities'" />
-        <!-- <MiniscrollsKeywordsForm  /> -->
+        <MiniscrollsRepeaterForm
+          v-show="activeTab === 'weapons'"
+          form-title="weapons-form-title"
+          repeater-component="forms/partials/WeaponForm"
+          :repeater-array="miniscroll.weapons"
+          :repeater-item="weapon"
+        />
+        <MiniscrollsRepeaterForm
+          v-show="activeTab === 'abilities'"
+          form-title="abilities-form-title"
+          repeater-component="forms/partials/AbilityForm"
+          :repeater-array="miniscroll.abilities"
+          :repeater-item="ability"
+        />
         <MiniscrollsRepeaterForm
           v-show="activeTab === 'keywords'"
           form-title="keywords-form-title"
-          form-class="ms-creator__form--keywords"
-          repeater-component="@/components/forms/partials/KeywordForm.vue"
+          repeater-component="forms/partials/KeywordForm"
           :repeater-array="miniscroll.keywords"
-          :repeater-item="{ id: null, name: null }"
+          :repeater-item="keyword"
         />
       </div>
     </div>
@@ -36,7 +46,9 @@
     </div>
     <div class="ms-creator__buttons">
       <button class="btn-ghost gray-bg">{{ t("clear-fields") }}</button>
-      <button class="btn red-bg">{{ t("create-miniscroll") }}</button>
+      <button @click="createMiniscroll" class="btn red-bg">
+        {{ t("create-miniscroll") }}
+      </button>
     </div>
   </div>
 </template>
@@ -44,23 +56,19 @@
 <script lang="ts">
 import { Component, Ref, Vue } from "vue-property-decorator";
 import TabsBlock from "@/components/ui/TabsBlock.vue";
-import { UseTranslation } from "@/decorators";
+import { UseTranslation } from "@/utils/decorators";
 import { vxm } from "@/store/store.vuex";
 import MiniscrollsStatsForm from "@/components/forms/MiniscrollsStatsForm.vue";
-import MiniscrollsWeaponsForm from "@/components/forms/MiniscrollsWeaponsForm.vue";
-import MiniscrollsAbilitiesForm from "@/components/forms/MiniscrollsAbilitiesForm.vue";
-import MiniscrollsKeywordsForm from "@/components/forms/MiniscrollsKeywordsForm.vue";
 import MiniscrollsRepeaterForm from "@/components/forms/MiniscrollsRepeaterForm.vue";
 import MiniscrollCard from "@/components/partials/MiniscrollCard.vue";
+import { abilityItem, keywordItem, weaponItem } from "@/utils/helpers";
+import { Ability, Keyword, Weapon } from "@/interfaces/interfaces";
 
 @UseTranslation("miniscrolls")
 @Component({
   components: {
     TabsBlock,
     MiniscrollsStatsForm,
-    MiniscrollsWeaponsForm,
-    MiniscrollsAbilitiesForm,
-    MiniscrollsKeywordsForm,
     MiniscrollCard,
     MiniscrollsRepeaterForm,
   },
@@ -72,7 +80,11 @@ export default class MiniscrollsCreator extends Vue {
   activeTab: string | number = "stats";
   previewPinned: boolean = false;
 
+  keyword: Keyword = keywordItem;
+  ability: Ability = abilityItem;
+  weapon: Weapon = weaponItem;
   miniscroll = vxm.miniscrolls.miniscroll;
+  userStore = vxm.user;
 
   changeTab(tab: string | number): void {
     this.activeTab = tab;
@@ -86,6 +98,18 @@ export default class MiniscrollsCreator extends Vue {
     const screenHeight = window.innerHeight;
 
     this.msCreator.style.height = `${screenHeight - 130}px`;
+  }
+
+  createMiniscroll(): void {
+    const itemID = Date.now() + Math.random();
+
+    const createdMiniscroll = { ...this.miniscroll };
+    createdMiniscroll.id = itemID;
+    createdMiniscroll.weapons = [...this.miniscroll.weapons];
+    createdMiniscroll.abilities = [...this.miniscroll.abilities];
+    createdMiniscroll.keywords = [...this.miniscroll.keywords];
+
+    this.userStore.addMiniscroll(createdMiniscroll);
   }
 
   mounted(): void {

@@ -23,7 +23,7 @@
 <script lang="ts">
 import { LinkParams } from "@/interfaces/interfaces";
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { UseTranslation } from "@/decorators";
+import { UseTranslation } from "@/utils/decorators";
 
 @UseTranslation("navigation")
 @Component

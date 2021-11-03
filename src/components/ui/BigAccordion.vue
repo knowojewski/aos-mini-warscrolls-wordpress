@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { UseTranslation } from "@/decorators";
+import { UseTranslation } from "@/utils/decorators";
 import { Vue, Component, Prop, Ref } from "vue-property-decorator";
 import { scrollToElement } from "@/services/UIServices";
 

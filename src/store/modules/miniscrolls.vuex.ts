@@ -13,6 +13,7 @@ const VuexModule = createModule({
 
 export default class MiniscrollsStore extends VuexModule {
   public miniscroll: MiniscrollInterface = {
+    id: null,
     allegiance: null,
     name: null,
     mount: null,

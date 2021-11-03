@@ -47,7 +47,7 @@
 </template>
 
 <script lang="ts">
-import { UseTranslation } from "@/decorators";
+import { UseTranslation } from "@/utils/decorators";
 import { Component, Vue } from "vue-property-decorator";
 import { vxm } from "@/store/store.vuex";
 import DatalistInput from "@/components/forms/partials/DatalistInput.vue";
