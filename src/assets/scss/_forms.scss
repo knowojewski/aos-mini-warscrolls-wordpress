@@ -1,7 +1,7 @@
 .ms-form {
     position: relative;
     width: 100%;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
 
     &--weapon {
         .ms-form__main {
@@ -43,20 +43,10 @@
         .form-field {
             margin-bottom: 0;
         }
-
-        .ms-form__wrapper {
-            width: calc(100% - 71px);
-        }
-
-        .ms-form__buttons {
-            flex-direction: row;
-            right: unset;
-            left: calc(100% - 71px);
-        }
     }
 
     &__wrapper {
-        width: calc(100% - 23px);
+        width: 100%;
         border: 1px solid $black;
         padding: 8px 12px;
         background-color: $gray6;
@@ -67,11 +57,9 @@
     }
 
     &__buttons {
-        position: absolute;
-        top: 0;
-        right: 0;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: flex-end;
 
         .btn {
             position: relative;
@@ -79,15 +67,18 @@
             height: 24px;
             border-width: 1px;
             min-width: auto;
+            bottom: -1px;
 
-            &:nth-of-type(2) {
-                top: -1px;
+            &.move {
                 border-color: $dark-gray2;
-            }
 
-            &:nth-of-type(3) {
-                top: -2px;
-                border-color: $dark-gray2;
+                &.up {
+                    right: -2px;
+                }
+
+                &.down {
+                    right: -1px;
+                }
             }
 
             span {

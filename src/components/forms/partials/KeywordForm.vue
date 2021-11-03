@@ -1,5 +1,24 @@
 <template>
   <div class="ms-form ms-form--keyword">
+    <div class="ms-form__buttons">
+      <button
+        v-if="itemIndex !== 0"
+        @click="moveForm(-1, formData.id)"
+        class="move up btn gray-bg"
+      >
+        <span class="ms-icons-chevron-up"></span>
+      </button>
+      <button
+        v-if="itemIndex < miniscroll.keywords.length - 1"
+        @click="moveForm(1, formData.id)"
+        class="move down btn gray-bg"
+      >
+        <span class="ms-icons-chevron-down"></span>
+      </button>
+      <button @click="deleteForm(formData.id)" class="close btn red-bg">
+        <span class="ms-icons-close"></span>
+      </button>
+    </div>
     <div class="ms-form__wrapper">
       <div class="ms-form__main">
         <TextInput
@@ -8,25 +27,6 @@
           :show-label="false"
         />
       </div>
-    </div>
-    <div class="ms-form__buttons">
-      <button @click="deleteForm(formData.id)" class="close btn red-bg">
-        <span class="ms-icons-close"></span>
-      </button>
-      <button
-        v-if="itemIndex !== 0"
-        @click="moveForm(-1, formData.id)"
-        class="move-up btn gray-bg"
-      >
-        <span class="ms-icons-chevron-up"></span>
-      </button>
-      <button
-        v-if="itemIndex < miniscroll.keywords.length - 1"
-        @click="moveForm(1, formData.id)"
-        class="move-down btn gray-bg"
-      >
-        <span class="ms-icons-chevron-down"></span>
-      </button>
     </div>
   </div>
 </template>

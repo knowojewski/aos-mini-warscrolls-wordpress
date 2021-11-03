@@ -10,7 +10,15 @@
         <MiniscrollsStatsForm v-show="activeTab === 'stats'" />
         <MiniscrollsWeaponsForm v-show="activeTab === 'weapons'" />
         <MiniscrollsAbilitiesForm v-show="activeTab === 'abilities'" />
-        <MiniscrollsKeywordsForm v-show="activeTab === 'keywords'" />
+        <!-- <MiniscrollsKeywordsForm  /> -->
+        <MiniscrollsRepeaterForm
+          v-show="activeTab === 'keywords'"
+          form-title="keywords-form-title"
+          form-class="ms-creator__form--keywords"
+          repeater-component="@/components/forms/partials/KeywordForm.vue"
+          :repeater-array="miniscroll.keywords"
+          :repeater-item="{ id: null, name: null }"
+        />
       </div>
     </div>
     <div class="ms-creator__preview" :class="{ pinned: previewPinned }">
@@ -42,6 +50,7 @@ import MiniscrollsStatsForm from "@/components/forms/MiniscrollsStatsForm.vue";
 import MiniscrollsWeaponsForm from "@/components/forms/MiniscrollsWeaponsForm.vue";
 import MiniscrollsAbilitiesForm from "@/components/forms/MiniscrollsAbilitiesForm.vue";
 import MiniscrollsKeywordsForm from "@/components/forms/MiniscrollsKeywordsForm.vue";
+import MiniscrollsRepeaterForm from "@/components/forms/MiniscrollsRepeaterForm.vue";
 import MiniscrollCard from "@/components/partials/MiniscrollCard.vue";
 
 @UseTranslation("miniscrolls")
@@ -53,6 +62,7 @@ import MiniscrollCard from "@/components/partials/MiniscrollCard.vue";
     MiniscrollsAbilitiesForm,
     MiniscrollsKeywordsForm,
     MiniscrollCard,
+    MiniscrollsRepeaterForm,
   },
 })
 export default class MiniscrollsCreator extends Vue {
