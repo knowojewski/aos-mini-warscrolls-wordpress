@@ -30,24 +30,33 @@
         v-show="dropdownActive"
         class="select__dropdown"
       >
-        <li tabindex="-1" @click="setValue(null)">-</li>
-        <li
-          v-for="(option, index) in selectOptions"
-          :key="`${index} - ${option}`"
-          tabindex="-1"
-          @click="setValue(option)"
+        <overlay-scrollbars
+          :options="{ className: 'os-theme-dark select__dropdown-wrapper' }"
         >
-          {{ option }}
-        </li>
+          <li tabindex="-1" @click="setValue(null)">-</li>
+          <li
+            v-for="(option, index) in selectOptions"
+            :key="`${index} - ${option}`"
+            tabindex="-1"
+            @click="setValue(option)"
+          >
+            {{ option }}
+          </li>
+        </overlay-scrollbars>
       </ul>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { OverlayScrollbarsComponent } from "overlayscrollbars-vue";
 import { Component, Prop, PropSync, Ref, Vue } from "vue-property-decorator";
 
-@Component
+@Component({
+  components: {
+    "overlay-scrollbars": OverlayScrollbarsComponent,
+  },
+})
 export default class CustomSelect extends Vue {
   @Prop(String) readonly selectLabel?: string;
   @Prop({ default: "primary" }) readonly inputStyle?: string;

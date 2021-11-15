@@ -22,20 +22,25 @@
         v-show="dropdownActive"
         class="datalist__dropdown"
       >
-        <li
-          v-for="(option, index) in getFilteredOptions"
-          :key="`${index} - ${option}`"
-          tabindex="-1"
-          @click="setValue(option)"
+        <overlay-scrollbars
+          :options="{ className: 'os-theme-dark datalist__dropdown-wrapper' }"
         >
-          {{ option }}
-        </li>
+          <li
+            v-for="(option, index) in getFilteredOptions"
+            :key="`${index} - ${option}`"
+            tabindex="-1"
+            @click="setValue(option)"
+          >
+            {{ option }}
+          </li>
+        </overlay-scrollbars>
       </ul>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { OverlayScrollbarsComponent } from "overlayscrollbars-vue";
 import {
   Component,
   Prop,
@@ -45,7 +50,11 @@ import {
   Watch,
 } from "vue-property-decorator";
 
-@Component
+@Component({
+  components: {
+    "overlay-scrollbars": OverlayScrollbarsComponent,
+  },
+})
 export default class DatalistInput extends Vue {
   @Prop(String) readonly datalistLabel?: string;
   @Prop({ default: "primary" }) readonly inputStyle?: string;
@@ -132,10 +141,10 @@ export default class DatalistInput extends Vue {
 
   .dropdown-arrow {
     position: absolute;
-    right: 4px;
+    right: 2px;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 0;
+    z-index: 1;
     opacity: 0;
     transition: opacity 0.5s;
 
@@ -155,6 +164,7 @@ export default class DatalistInput extends Vue {
     position: relative;
     z-index: 1;
     background-color: transparent;
+    padding-right: 20px;
 
     &:hover,
     &:focus {
@@ -170,11 +180,14 @@ export default class DatalistInput extends Vue {
     left: 0;
     min-width: 100%;
     width: max-content;
-    max-height: 150px;
-    overflow-y: auto;
     border-bottom: 1px solid $gray1;
     border-top: 1px solid $black;
     z-index: 10;
+
+    &-wrapper {
+      max-height: 150px;
+      overflow-y: auto;
+    }
 
     li {
       padding: 4px 8px;
@@ -184,7 +197,7 @@ export default class DatalistInput extends Vue {
       border-left: 1px solid $gray1;
       border-right: 1px solid $gray1;
       border-bottom: 1px solid $gray1;
-      transition: background 0.3s, color 0.3s, border-color 0.3s;
+      transition: background 0.3s;
 
       &:last-of-type {
         border-bottom: 0;
@@ -192,9 +205,7 @@ export default class DatalistInput extends Vue {
 
       &:hover,
       &:focus {
-        background-color: $black;
-        color: $white;
-        border-color: $black;
+        background-color: $gray4;
       }
     }
   }

@@ -38,5 +38,6 @@
     "damage": "Obrażenia",
     "ability-name": "Nazwa Zdolności",
     "description": "Opis",
-    "keyword": "Słowo-klucz"
+    "keyword": "Słowo-klucz",
+    "creating-miniscroll": "Tworzenie Miniscrolla"
 }

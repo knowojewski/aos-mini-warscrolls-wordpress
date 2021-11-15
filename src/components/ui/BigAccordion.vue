@@ -55,6 +55,10 @@ export default class BigAccordion extends Vue {
     }
   }
 
+  scrollToAccordion(): void {
+    scrollToElement(window as unknown as HTMLElement, this.accordion, 65, 300);
+  }
+
   mounted(): void {
     if (this.activeOnLoad) {
       this.toggleAccordion(false);

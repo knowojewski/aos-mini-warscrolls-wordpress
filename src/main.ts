@@ -1,3 +1,4 @@
+import "overlayscrollbars/css/OverlayScrollbars.css";
 import Vue from "vue";
 import App from "./App.vue";
 import "./registerServiceWorker";

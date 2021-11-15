@@ -12,25 +12,30 @@
             <MiniscrollsCreator />
           </template>
         </BigAccordion>
-        <BigAccordion accordionTitle="accordion2-title" :activeOnLoad="true">
+        <BigAccordion
+          ref="secondAccordion"
+          accordionTitle="accordion2-title"
+          :activeOnLoad="true"
+        >
           <template v-slot:accordionContent>
             <div class="your-ms">Test</div>
           </template>
         </BigAccordion>
       </div>
     </div>
-    <!-- <div style="height: 100vh"></div>
     <div style="height: 100vh"></div>
-    <div style="height: 100vh"></div> -->
+    <div style="height: 100vh"></div>
+    <div style="height: 100vh"></div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Ref, Vue } from "vue-property-decorator";
 import PageHeader from "@/components/partials/PageHeader.vue";
 import BigAccordion from "@/components/ui/BigAccordion.vue";
 import MiniscrollsCreator from "@/components/partials/MiniscrollCreator.vue";
 import { UseTranslation } from "@/utils/decorators";
+import { EventBus } from "@/utils/event-bus";
 
 @UseTranslation("miniscrolls")
 @Component({
@@ -41,8 +46,23 @@ import { UseTranslation } from "@/utils/decorators";
   },
 })
 export default class MiniscrollsCreatorPage extends Vue {
+  @Ref("secondAccordion") readonly secondAccordion!: BigAccordion;
+
   pageTitle: string = "title";
   pageIntro: string = "page-intro";
+
+  private miniscrollCreateHandler(): void {
+    console.log(this.secondAccordion);
+    this.secondAccordion.scrollToAccordion();
+  }
+
+  mounted(): void {
+    EventBus.$on("createMiniscroll", this.miniscrollCreateHandler);
+  }
+
+  destroyed(): void {
+    EventBus.$off("createMiniscroll", this.miniscrollCreateHandler);
+  }
 }
 </script>
 
@@ -50,7 +70,6 @@ export default class MiniscrollsCreatorPage extends Vue {
 .miniscrolls {
   background-color: #fff;
   padding: 16px 0;
-  // max-height: 600px;
   overflow-y: auto;
 }
 

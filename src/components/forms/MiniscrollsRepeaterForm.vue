@@ -5,7 +5,7 @@
       <Repeater
         ref="repeater"
         @clicked="addForm"
-        :repeater-label="t('keyword-repeater-label')"
+        :repeater-label="t(repeaterBtnText)"
       >
         <template v-slot:list-items>
           <li
@@ -44,6 +44,7 @@ export default class MiniscrollsRepeaterForm extends Vue {
   @Prop(String) readonly formTitle!: string;
   @Prop(String) readonly formClass!: string;
   @Prop(String) readonly repeaterComponent!: string;
+  @Prop(String) readonly repeaterBtnText!: string;
   @Prop(Array) readonly repeaterArray!: (Keyword | Weapon | Ability)[];
   @Prop(Object) readonly repeaterItem!: Keyword | Weapon | Ability;
 
