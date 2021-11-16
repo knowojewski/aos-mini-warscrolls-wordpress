@@ -7,9 +7,14 @@
         <span class="bar horizontal"></span>
       </span>
     </button>
-    <ul ref="repeaterList" class="repeater__list">
+    <transition-group
+      name="fade-in"
+      tag="ul"
+      ref="repeaterList"
+      class="repeater__list"
+    >
       <slot name="list-items"></slot>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -23,6 +28,21 @@ export default class Repeater extends Vue {
 </script>
 
 <style lang="scss">
+.fade-in-enter-active,
+.fade-in-leave-active {
+  transition: transform 0.3s, opacity 0.3s;
+}
+.fade-in-leave-active {
+  position: absolute;
+}
+.fade-in-enter,
+.fade-in-leave-to {
+  opacity: 0;
+}
+.fade-in-move {
+  transition: transform 0.3s, opacity 0.3s;
+}
+
 .repeater {
   &__button {
     display: flex;
@@ -77,6 +97,7 @@ export default class Repeater extends Vue {
 
   &__list {
     padding: 20px 0;
+    position: relative;
   }
 }
 </style>

@@ -1,63 +1,58 @@
 <template>
-  <div class="ms-creator">
-    <overlay-scrollbars
-      :options="{ className: 'os-theme-dark ms-creator__wrapper' }"
-      ref="creator"
-    >
-      <div class="ms-creator__main">
-        <TabsBlock
-          :tabs-prop="blocksAndTabs"
-          :active-tab="activeTab"
-          @tabClick="changeTab"
+  <div class="ms-creator" ref="creator">
+    <div class="ms-creator__main">
+      <TabsBlock
+        :tabs-prop="blocksAndTabs"
+        :active-tab="activeTab"
+        @tabClick="changeTab"
+      />
+      <div class="tabs-block__blocks">
+        <MiniscrollsStatsForm v-show="activeTab === 'stats'" />
+        <MiniscrollsRepeaterForm
+          v-show="activeTab === 'weapons'"
+          form-title="weapons-form-title"
+          repeater-component="forms/partials/WeaponForm"
+          :repeater-array="miniscroll.weapons"
+          :repeater-item="weapon"
+          repeater-btn-text="weapon-repeater-label"
         />
-        <div class="tabs-block__blocks">
-          <MiniscrollsStatsForm v-show="activeTab === 'stats'" />
-          <MiniscrollsRepeaterForm
-            v-show="activeTab === 'weapons'"
-            form-title="weapons-form-title"
-            repeater-component="forms/partials/WeaponForm"
-            :repeater-array="miniscroll.weapons"
-            :repeater-item="weapon"
-            repeater-btn-text="weapon-repeater-label"
-          />
-          <MiniscrollsRepeaterForm
-            v-show="activeTab === 'abilities'"
-            form-title="abilities-form-title"
-            repeater-component="forms/partials/AbilityForm"
-            :repeater-array="miniscroll.abilities"
-            :repeater-item="ability"
-            repeater-btn-text="ability-repeater-label"
-          />
-          <MiniscrollsRepeaterForm
-            v-show="activeTab === 'keywords'"
-            form-title="keywords-form-title"
-            repeater-component="forms/partials/KeywordForm"
-            :repeater-array="miniscroll.keywords"
-            :repeater-item="keyword"
-            repeater-btn-text="keyword-repeater-label"
-          />
-        </div>
+        <MiniscrollsRepeaterForm
+          v-show="activeTab === 'abilities'"
+          form-title="abilities-form-title"
+          repeater-component="forms/partials/AbilityForm"
+          :repeater-array="miniscroll.abilities"
+          :repeater-item="ability"
+          repeater-btn-text="ability-repeater-label"
+        />
+        <MiniscrollsRepeaterForm
+          v-show="activeTab === 'keywords'"
+          form-title="keywords-form-title"
+          repeater-component="forms/partials/KeywordForm"
+          :repeater-array="miniscroll.keywords"
+          :repeater-item="keyword"
+          repeater-btn-text="keyword-repeater-label"
+        />
       </div>
-      <div class="ms-creator__preview" :class="{ pinned: previewPinned }">
-        <h5 class="ms-creator__preview-title">
-          {{ t("ms-preview") }}
-          <button
-            class="ms-creator__preview-btn"
-            @click="pinPreviewOn"
-            :class="{ active: previewPinned }"
-          >
-            <span class="ms-icons-pin"></span>
-          </button>
-        </h5>
-        <MiniscrollCard :miniscroll-data="miniscroll" />
-      </div>
-      <div class="ms-creator__buttons">
-        <button class="btn-ghost gray-bg">{{ t("clear-fields") }}</button>
-        <button @click="createMiniscroll" class="btn red-bg">
-          {{ t("create-miniscroll") }}
+    </div>
+    <div class="ms-creator__preview" :class="{ pinned: previewPinned }">
+      <h5 class="ms-creator__preview-title">
+        {{ t("ms-preview") }}
+        <button
+          class="ms-creator__preview-btn"
+          @click="pinPreviewOn"
+          :class="{ active: previewPinned }"
+        >
+          <span class="ms-icons-pin"></span>
         </button>
-      </div>
-    </overlay-scrollbars>
+      </h5>
+      <MiniscrollCard :miniscroll-data="miniscroll" />
+    </div>
+    <div class="ms-creator__buttons">
+      <button class="btn-ghost gray-bg">{{ t("clear-fields") }}</button>
+      <button @click="createMiniscroll" class="btn red-bg">
+        {{ t("create-miniscroll") }}
+      </button>
+    </div>
     <OverlayLoader
       :loading="loading"
       :text="t('creating-miniscroll') + '...'"
@@ -77,7 +72,6 @@ import { abilityItem, keywordItem, weaponItem } from "@/utils/helpers";
 import { Ability, Keyword, Weapon } from "@/interfaces/interfaces";
 import OverlayLoader from "@/components/ui/OverlayLoader.vue";
 import { EventBus } from "@/utils/event-bus";
-import { OverlayScrollbarsComponent } from "overlayscrollbars-vue";
 
 @UseTranslation("miniscrolls")
 @Component({
@@ -87,11 +81,10 @@ import { OverlayScrollbarsComponent } from "overlayscrollbars-vue";
     MiniscrollCard,
     MiniscrollsRepeaterForm,
     OverlayLoader,
-    "overlay-scrollbars": OverlayScrollbarsComponent,
   },
 })
 export default class MiniscrollsCreator extends Vue {
-  @Ref("creator") readonly msCreator!: OverlayScrollbarsComponent;
+  @Ref("creator") readonly msCreator!: HTMLElement;
 
   blocksAndTabs: string[] = ["stats", "weapons", "abilities", "keywords"];
   activeTab: string | number = "stats";
@@ -116,9 +109,7 @@ export default class MiniscrollsCreator extends Vue {
   setCreatorHeight(): void {
     const screenHeight = window.innerHeight;
 
-    (this.msCreator.$el as HTMLElement).style.height = `${
-      screenHeight - 130
-    }px`;
+    this.msCreator.style.height = `${screenHeight - 130}px`;
   }
 
   createMiniscroll(): void {
@@ -149,12 +140,9 @@ export default class MiniscrollsCreator extends Vue {
 .ms-creator {
   position: relative;
   background-color: $white;
-  // overflow-y: auto;
-  // height: calc(100vh - 150px);
-
-  &__wrapper {
-    padding-top: 12px;
-  }
+  padding-top: 12px;
+  overflow-y: auto;
+  height: calc(100vh - 150px);
 
   &__form {
     min-height: 250px;

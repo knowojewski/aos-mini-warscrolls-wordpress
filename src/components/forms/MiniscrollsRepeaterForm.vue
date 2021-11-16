@@ -10,7 +10,7 @@
         <template v-slot:list-items>
           <li
             v-for="(item, index) in repeaterArray"
-            :key="`${index}`"
+            :key="`${item.id}`"
             class="repeater__list-item"
           >
             <component
