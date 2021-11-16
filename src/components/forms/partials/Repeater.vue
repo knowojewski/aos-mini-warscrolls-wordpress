@@ -99,5 +99,9 @@ export default class Repeater extends Vue {
     padding: 20px 0;
     position: relative;
   }
+
+  &__list-item {
+    width: 100%;
+  }
 }
 </style>

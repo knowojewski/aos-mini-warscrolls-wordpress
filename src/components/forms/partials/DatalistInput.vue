@@ -18,8 +18,7 @@
         <span></span>
       </span>
       <ul
-        v-if="datalistOptions.length > 0"
-        v-show="dropdownActive"
+        v-if="datalistOptions.length > 0 && dropdownActive"
         class="datalist__dropdown"
       >
         <overlay-scrollbars

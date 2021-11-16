@@ -26,8 +26,7 @@
         <span></span>
       </span>
       <ul
-        v-if="selectOptions && selectOptions.length > 0"
-        v-show="dropdownActive"
+        v-if="selectOptions && selectOptions.length > 0 && dropdownActive"
         class="select__dropdown"
       >
         <overlay-scrollbars

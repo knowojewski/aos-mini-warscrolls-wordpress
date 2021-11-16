@@ -7,31 +7,36 @@
         @tabClick="changeTab"
       />
       <div class="tabs-block__blocks">
-        <MiniscrollsStatsForm v-show="activeTab === 'stats'" />
-        <MiniscrollsRepeaterForm
-          v-show="activeTab === 'weapons'"
-          form-title="weapons-form-title"
-          repeater-component="forms/partials/WeaponForm"
-          :repeater-array="miniscroll.weapons"
-          :repeater-item="weapon"
-          repeater-btn-text="weapon-repeater-label"
-        />
-        <MiniscrollsRepeaterForm
-          v-show="activeTab === 'abilities'"
-          form-title="abilities-form-title"
-          repeater-component="forms/partials/AbilityForm"
-          :repeater-array="miniscroll.abilities"
-          :repeater-item="ability"
-          repeater-btn-text="ability-repeater-label"
-        />
-        <MiniscrollsRepeaterForm
-          v-show="activeTab === 'keywords'"
-          form-title="keywords-form-title"
-          repeater-component="forms/partials/KeywordForm"
-          :repeater-array="miniscroll.keywords"
-          :repeater-item="keyword"
-          repeater-btn-text="keyword-repeater-label"
-        />
+        <transition name="fade-quick" mode="out-in">
+          <MiniscrollsStatsForm v-if="activeTab === 'stats'" key="stats" />
+          <MiniscrollsRepeaterForm
+            key="weapons"
+            v-if="activeTab === 'weapons'"
+            form-title="weapons-form-title"
+            repeater-component="forms/partials/WeaponForm"
+            :repeater-array="miniscroll.weapons"
+            :repeater-item="weapon"
+            repeater-btn-text="weapon-repeater-label"
+          />
+          <MiniscrollsRepeaterForm
+            key="abilities"
+            v-if="activeTab === 'abilities'"
+            form-title="abilities-form-title"
+            repeater-component="forms/partials/AbilityForm"
+            :repeater-array="miniscroll.abilities"
+            :repeater-item="ability"
+            repeater-btn-text="ability-repeater-label"
+          />
+          <MiniscrollsRepeaterForm
+            key="keywords"
+            v-if="activeTab === 'keywords'"
+            form-title="keywords-form-title"
+            repeater-component="forms/partials/KeywordForm"
+            :repeater-array="miniscroll.keywords"
+            :repeater-item="keyword"
+            repeater-btn-text="keyword-repeater-label"
+          />
+        </transition>
       </div>
     </div>
     <div class="ms-creator__preview" :class="{ pinned: previewPinned }">
@@ -166,7 +171,7 @@ export default class MiniscrollsCreator extends Vue {
       right: 0;
       bottom: -200px;
       background-color: $white;
-      z-index: 1;
+      z-index: 2;
 
       .ms-creator__preview-title {
         margin: 0 2px 2px 2px;

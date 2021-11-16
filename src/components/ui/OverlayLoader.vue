@@ -137,17 +137,6 @@ export default class OverlayLoader extends Vue {
   }
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s;
-}
-.fade-enter {
-  opacity: 0;
-}
-.fade-leave-to {
-  opacity: 0;
-}
-
 @keyframes rotate-right {
   0% {
     transform: rotate(0);
