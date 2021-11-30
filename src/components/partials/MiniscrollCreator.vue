@@ -131,6 +131,13 @@ export default class MiniscrollsCreator extends Vue {
 
     setTimeout(() => {
       this.loading = false;
+
+      vxm.ui.addSnack({
+        title: this.$t("miniscrolls.snack-title-miniscroll-created") as string,
+        content: this.$t(
+          "miniscrolls.snack-content-miniscroll-created"
+        ) as string,
+      });
       EventBus.$emit("createMiniscroll");
     }, 1000);
   }

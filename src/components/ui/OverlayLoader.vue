@@ -21,32 +21,6 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 export default class OverlayLoader extends Vue {
   @Prop(String) readonly text!: string;
   @Prop(Boolean) readonly loading!: boolean;
-
-  // loaderActive: boolean = false;
-  // loaderShown: boolean = false;
-
-  // @Watch("loading")
-  // handleLoadingStateChange(to: boolean): void {
-  //   to ? this.startLoading() : this.endLoading();
-  // }
-
-  // startLoading(): void {
-  //   this.loaderShown = true;
-
-  //   setTimeout(() => {
-  //     this.loaderActive = true;
-  //   }, 10);
-  // }
-
-  // endLoading(): void {
-  //   this.loaderActive = false;
-
-  //   setTimeout(() => {
-  //     this.loaderShown = false;
-
-  //     this.$emit("end-loading");
-  //   }, 300);
-  // }
 }
 </script>
 

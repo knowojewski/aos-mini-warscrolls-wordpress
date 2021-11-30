@@ -7,7 +7,7 @@
       </p>
     </div>
     <div class="ms-card__top-right">
-      <p class="ms-card__top-weapons">Weapon 1 / Weapon 2</p>
+      <p class="ms-card__top-weapons">{{ weapons }}</p>
     </div>
   </div>
 </template>
@@ -17,8 +17,16 @@ import { MiniscrollInterface } from "@/interfaces/interfaces";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
-export default class MiniscrollTop extends Vue {
+export default class MsTop extends Vue {
   @Prop(Object) readonly miniscrollData!: MiniscrollInterface;
+
+  get weapons(): string {
+    const msWeapons = this.miniscrollData.weapons.map((item) => {
+      return item.name;
+    });
+
+    return msWeapons.length > 1 ? msWeapons.join(" / ") : msWeapons.join("");
+  }
 }
 </script>
 

@@ -81,3 +81,9 @@ export interface Keyword {
   id: number | null;
   name: string | null;
 }
+
+export interface SnackbarData {
+  id: number;
+  title?: string;
+  content: string;
+}

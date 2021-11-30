@@ -39,5 +39,7 @@
     "ability-name": "Nazwa Zdolności",
     "description": "Opis",
     "keyword": "Słowo-klucz",
-    "creating-miniscroll": "Tworzenie Miniscrolla"
+    "creating-miniscroll": "Tworzenie Miniscrolla",
+    "snack-title-miniscroll-created": "Utworzono Miniscrolla",
+    "snack-content-miniscroll-created": "Miniscroll został pomyślnie stworzony i dodany do Twoich Miniscrolli!"
 }

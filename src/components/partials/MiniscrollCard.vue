@@ -1,71 +1,56 @@
 <template>
   <div class="ms-card">
     <div class="ms-card__side front">
-      <MiniscrollTop :miniscroll-data="miniscrollData" />
+      <ms-top :miniscroll-data="miniscrollData" />
       <div class="ms-card__stats">
-        <div class="stat">
-          <span class="ms-icons-arrow-up"></span>
-          <span class="stat__value">{{ miniscrollData.move }}"</span>
-          <div class="stat__reminders">
-            <span class="stat__reminder first">{{
-              miniscrollData.fly ? t("unit-fly") : ""
-            }}</span>
-            <span class="stat__reminder second">{{
-              miniscrollData.statsReminders.move
-            }}</span>
-          </div>
-        </div>
-        <div class="stat">
-          <span class="ms-icons-shield"></span>
-          <span class="stat__value">{{ miniscrollData.save }}</span>
-          <div class="stat__reminders">
-            <span class="stat__reminder first">{{
-              miniscrollData.statsReminders.saveFirst
-            }}</span>
-            <span class="stat__reminder second">{{
-              miniscrollData.statsReminders.saveSecond
-            }}</span>
-          </div>
-        </div>
-        <div class="stat">
-          <span class="ms-icons-skull"></span>
-          <span class="stat__value">{{ miniscrollData.wounds }}</span>
-          <div class="stat__reminders">
-            <span class="stat__reminder first">{{
-              miniscrollData.statsReminders.woundsFirst
-            }}</span>
-            <span class="stat__reminder second">{{
-              miniscrollData.statsReminders.woundsFirst
-            }}</span>
-          </div>
-        </div>
-        <div class="stat">
-          <span class="ms-icons-star"></span>
-          <span class="stat__value">{{ miniscrollData.bravery }}</span>
-          <div class="stat__reminders">
-            <span class="stat__reminder first">{{
-              miniscrollData.statsReminders.braveryFirst
-            }}</span>
-            <span class="stat__reminder second">{{
-              miniscrollData.statsReminders.braveryFirst
-            }}</span>
-          </div>
-        </div>
+        <ms-stat
+          icon="ms-icons-arrow-up"
+          :value="miniscrollData.move ? miniscrollData.move + `&quot;` : ''"
+          :first-rem="miniscrollData.fly ? t('unit-fly') : ''"
+          :second-rem="miniscrollData.statsReminders.move"
+        />
+        <ms-stat
+          icon="ms-icons-shield"
+          :value="miniscrollData.save"
+          :first-rem="miniscrollData.statsReminders.saveFirst"
+          :second-rem="miniscrollData.statsReminders.saveSecond"
+        />
+        <ms-stat
+          icon="ms-icons-skull"
+          :value="miniscrollData.wounds"
+          :first-rem="miniscrollData.statsReminders.woundsFirst"
+          :second-rem="miniscrollData.statsReminders.woundsSecond"
+        />
+        <ms-stat
+          icon="ms-icons-star"
+          :value="miniscrollData.bravery"
+          :first-rem="miniscrollData.statsReminders.braveryFirst"
+          :second-rem="miniscrollData.statsReminders.braverySecond"
+        />
       </div>
       <div class="ms-card__weapons">
         <ul class="ms-card__weapons-list">
-          <li
+          <li class="ms-card__weapons-header">
+            <p class="dummy"></p>
+            <p class="range">{{ t("range") }}</p>
+            <p class="attack">{{ t("attack") }}</p>
+            <p class="hit">{{ t("to-hit") }}</p>
+            <p class="wound">{{ t("to-wound") }}</p>
+            <p class="rend">{{ t("rend") }}</p>
+            <p class="damage">Dmg</p>
+          </li>
+          <ms-weapon
             v-for="(weapon, index) in miniscrollData.weapons"
             :key="`${index} - ${weapon.name}`"
-            class="ms-card__weapon"
-          >
-            Unit Weapon: {{ weapon.name }} Unit Weapon: {{ weapon.type }}
-          </li>
+            :weapon="weapon"
+          />
         </ul>
       </div>
+      <div class="ms-card__abilities"></div>
+      <div class="ms-card__keywords"></div>
     </div>
     <div v-if="cardBack" class="ms-card__side back">
-      <MiniscrollTop :miniscroll-data="miniscrollData" />
+      <ms-top :miniscroll-data="miniscrollData" />
     </div>
   </div>
 </template>
@@ -74,12 +59,16 @@
 import { UseTranslation } from "@/utils/decorators";
 import { MiniscrollInterface } from "@/interfaces/interfaces";
 import { Component, Prop, Vue } from "vue-property-decorator";
-import MiniscrollTop from "./miniscroll-parts/MiniscrollTop.vue";
+import MsTop from "./miniscroll-parts/ms-top.vue";
+import MsStat from "./miniscroll-parts/ms-stat.vue";
+import MsWeapon from "./miniscroll-parts/ms-weapon.vue";
 
 @UseTranslation("miniscrolls")
 @Component({
   components: {
-    MiniscrollTop,
+    MsTop,
+    MsStat,
+    MsWeapon,
   },
 })
 export default class MiniscrollCard extends Vue {
@@ -118,33 +107,45 @@ export default class MiniscrollCard extends Vue {
     border-bottom: 1px solid $black;
   }
 
-  .stat {
+  &__weapons {
+    width: 100%;
+  }
+
+  &__weapons-list {
+    width: 95%;
+    margin: 0 auto;
+    padding: 5px 0;
+  }
+
+  &__weapons-header {
+    width: 100%;
     display: flex;
-    align-items: center;
-    position: relative;
 
-    span[class*="ms-icons"] {
-      font-size: 25px;
-      margin-right: 4px;
-    }
+    p {
+      height: 16px;
+      font-size: 11px;
+      text-align: center;
 
-    &__value {
-      font-size: 20px;
-    }
+      &:not(.dummy) {
+        width: 14%;
+        border: 1px solid $black;
+        border-right: none;
+      }
 
-    &__reminders {
-      position: absolute;
-      top: 50%;
-      left: calc(100% + 4px);
-      font-size: 9px;
-      display: flex;
-      flex-direction: column;
-      transform: translateY(-50%);
-    }
+      &.dummy {
+        width: 8%;
+      }
 
-    &__reminder {
-      &.first {
-        margin-bottom: 4px;
+      &.wound {
+        width: 16%;
+      }
+
+      &.range {
+        width: 20%;
+      }
+
+      &.damage {
+        border-right: 1px solid black;
       }
     }
   }

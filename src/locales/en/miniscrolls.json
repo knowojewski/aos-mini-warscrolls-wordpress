@@ -39,5 +39,7 @@
     "ability-name": "Ability Name",
     "description": "Description",
     "keyword": "Keyword",
-    "creating-miniscroll": "Creating Miniscroll"
+    "creating-miniscroll": "Creating Miniscroll",
+    "snack-title-miniscroll-created": "Miniscroll Created",
+    "snack-content-miniscroll-created": "Miniscroll has been successfully created and added to yours Miniscrolls!"
 }

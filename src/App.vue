@@ -4,16 +4,19 @@
     <main class="page-content">
       <router-view />
     </main>
+    <Snackbar />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import MainNavigation from "@/components/partials/MainNavigation.vue";
+import Snackbar from "@/components/ui/Snackbar.vue";
 
 @Component({
   components: {
     MainNavigation,
+    Snackbar,
   },
 })
 export default class App extends Vue {}
